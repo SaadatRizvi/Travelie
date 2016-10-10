@@ -60,6 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3>Let Us Plan Your Trip!<span>Best Available Choice in Topi</span></h3>
 			</div>
 			<div class="banner-grids">
+                <div class ="row">
 				<div class="col-md-2 banner-grid">
 					<select class="sel">
 						<option value="">Destination</option>
@@ -74,11 +75,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <option value="">Hyderabad</option>
 					</select>							
 				</div>
+                <div class="col-md-2 banner-grid">
+<!--						<select class="sel">
+					<option value="">DATE</option>
+                        <option value="">ADD CALENDER</option>      
+					</select>							-->
+                <input type="date" name="usr_date">
+				</div>
 				<div class="col-md-2 banner-grid">
-					<select class="sel">
-						<option value="">TIME!</option>
-						<option value="">_ _ : _ _</option>
-					</select>								
+			<!--		<select class="sel">
+						<option value="">TIME!</option>  
+						</select>       -->
+                    <input type="time" name="usr_time">
 				</div>
 				<div class="col-md-2 banner-grid">
 					<select class="sel">
@@ -89,15 +97,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-2 banner-grid">
 					<select class="sel">
-						<option value="">SEATS (1-15)</option>
-						<option value="">ENTER NUMERIC VALUE</option>
+						<option value="">Seats</option>
+						<option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+					    <option value="">4</option>
+					    <option value="">5</option>
+					    <option value="">6</option>
+					    <option value="">7</option>
+					    <option value="">8</option>
+					    <option value="">9</option>
+					    <option value="">10</option>
+					    <option value="">11</option>
+					    <option value="">12</option>
+					    <option value="">13</option>
+					    <option value="">14</option>
+					    <option value="">15</option>
 					</select>									
 				</div>
-				<div class="col-md-4 search">
+				<div class="col-md-2 search">
 					<form action="#" method="post">
 						<input type="submit" value="Submit request">
 					</form>
 				</div>
+                   </div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -123,9 +146,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						  <ul class="nav navbar-nav cl-effect-11">
 							<li class="active"><a href="#" data-hover="Home" class="scroll">Home </a></li>
-							<li><a href="#about" data-hover="About" class="scroll">About</a></li>
-							<li><a href="#services" data-hover="Services" class="scroll">Services</a></li>
-							<li><a href="#tours" data-hover="Tours" class="scroll">Tours</a></li>
+							<li><a href="#about" data-hover="Services" class="scroll">Services</a></li>
+							<li><a href="#services" data-hover="Aptitude" class="scroll">Aptitude</a></li>
+							<li><a href="#tours" data-hover="Destinations" class="scroll">Destinations</a></li>
 				<!--			 <li><a data-hover="News" href="#news" class="scroll">News</a></li>
 							  <li><a  href="#guides" data-hover="Guides" class="scroll">Guides</a></li> -->
 							 <li><a data-hover="Contact" href="#contact" class="scroll">Contact</a></li>
@@ -150,6 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th>Departure Date</th>
                             <th>Destination</th>
                             <th>Available seats</th>
+                            <th>Your Selection</th>
                         </tr>
                    </thead>
                  <tbody>
@@ -159,6 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <td>john@example.com</td>
                       <td>Lahore</td>
                       <td>5</td>
+                      <td><input type="radio" name="Van" value="Van"></td>
                    </tr>
                    <tr>
                       <td>AC</td>
@@ -166,6 +191,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <td>01-01-2016</td>
                       <td>Lahore</td>
                       <td>5</td>
+                      <td><input type="radio" name="Van" value="Van"></td>
                   </tr>
                   <tr>
                       <td>July</td>
@@ -173,6 +199,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <td>july@example.com</td>
                       <td>Lahore</td>
                       <td>5</td>
+                      <td><input type="radio" name="Van" value="Van"></td>
                  </tr>
                  <tr>
                      <td>AC</td>
@@ -180,11 +207,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                      <td>01-01-2016</td>
                      <td>Lahore</td>
                      <td>5</td>
+                     <td><input type="radio" name="Van" value="Van"></td>
                 </tr>
               </tbody>
                 </table>
             </div>
+            <div class="col-md-4 about-grid"> 
+				<form action="http://google.com">
+                    <input type="submit" value="Submit request" />
+                   
+                </form>
 			</div>
+                
+            </div>
 			<!--about--->
 				<div class="about-section" id="about">
 					<div class="container">
@@ -242,7 +277,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!--about--->
 			<div class="featured-services" id="services">
 				<div class="container">
-					<h3 class="tittle">Our Expertise</h3>
+					<h3 class="tittle">Our Aptitude</h3>
 					<div class="featured-grids">
 						<div class="col-md-3 featured-grid">
 							<div class="featured-grd">

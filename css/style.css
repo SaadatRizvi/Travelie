@@ -147,11 +147,14 @@ div#bs-example-navbar-collapse-1 {
 }
 .search input[type="submit"] {
     width: 100%;
+    
     background: #062f3c;
     border: none;
     outline: none;
     color: #fff;
     padding: .4em;
+    /*position:relative; top: 20px;   /*added by Usman. But when page is in portrait, it overlaps with the header banner*/
+         
 }
 .promotions {
     padding: 5em 0;
