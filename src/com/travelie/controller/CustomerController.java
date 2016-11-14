@@ -29,6 +29,7 @@ public String listCustomers(Model model){
 	model.addAttribute("customers", customers);
 	
 	return "list-customers";
+	
 }
 
 @GetMapping("/showFormForAdd")
