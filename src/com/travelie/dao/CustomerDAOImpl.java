@@ -11,6 +11,7 @@ import com.travelie.entity.Customer;
 
 
 @Repository
+//change Query in every DAO implementation
 public class CustomerDAOImpl implements CustomerDAO {
 
 	@Autowired
