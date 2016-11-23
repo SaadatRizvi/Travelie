@@ -36,4 +36,82 @@ public class Driver {
 	@Column(name="flagged")
 	private int flagged;
 	
+	public Driver() {
+		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public String getCnic() {
+		return cnic;
+	}
+
+	public void setCnic(String cnic) {
+		this.cnic = cnic;
+	}
+
+	public String getLicenseNumber() {
+		return licenseNumber;
+	}
+
+	public void setLicenseNumber(String licenseNumber) {
+		this.licenseNumber = licenseNumber;
+	}
+
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public int getFlagged() {
+		return flagged;
+	}
+
+	public void setFlagged(int flagged) {
+		this.flagged = flagged;
+	}
+
+	@Override
+	public String toString() {
+		return "Driver [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", picture=" + picture
+				+ ", cnic=" + cnic + ", licenseNumber=" + licenseNumber + ", phoneNumber=" + phoneNumber + ", flagged="
+				+ flagged + "]";
+	}
+	
+	
 }
+
+
