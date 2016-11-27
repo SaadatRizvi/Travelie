@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">    <!-- Added it after reading from w3school -->
 <html>
@@ -57,8 +58,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="banner-grids">
                 <div class ="row">
 				<div class="col-md-2 banner-grid">
-					<select class="sel">
-						<option value="">Destination</option>
+					<!--	<select class="sel">
+					 	<option value="">Destination</option>
 						<option value="">Islamabad</option>
 						<option value="">Rawalpindi</option>
 						<option value="">Lahore</option>
@@ -68,7 +69,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <option value="">Karachi</option>
                         <option value="">Abbotabad</option>
                         <option value="">Hyderabad</option>
-					</select>							
+					</select>		 -->
+					
+							   <!-- Spring tags added by Saadat -->
+                <form:form commandName="newWebdata"
+		name="createWebdataForm" method="POST"
+		action="${pageContext.request.contextPath}/fixedDeposit?fdAction=create">
+		
+		
+							<form:select path="destination" items="${destinationList}" /><font
+								style="color: #C11B17;"><form:errors path="destination"/></font>
+		
+		
+		</form:form>
+											
 				</div>
                 <div class="col-md-2 banner-grid">
 <!--						<select class="sel">
@@ -172,42 +186,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </tr>
                    </thead>
                  <tbody>
-                    <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>john@example.com</td>
-                      <td>Lahore</td>
-                      <td>5</td>
+             
+                  <c:forEach var="tempCustomer" items="${webdatas}">
+                 <tr>
+                      <td>${tempCustomer.type}</td>
+                      <td>${tempCustomer.departureTime}</td>
+                      <td>${tempCustomer.departureDate}</td>
+                      <td>${tempCustomer.destination}</td>
+                      <td>${tempCustomer.availableSeats}</td>
                       <td><input type="radio" name="Van" value="Van"></td>
                    </tr>
-                   <tr>
-                      <td>AC</td>
-                      <td>12:45</td>
-                      <td>01-01-2016</td>
-                      <td>Lahore</td>
-                      <td>5</td>
-                      <td><input type="radio" name="Van" value="Van"></td>
-                  </tr>
-                  <tr>
-                      <td>July</td>
-                      <td>Dooley</td>
-                      <td>july@example.com</td>
-                      <td>Lahore</td>
-                      <td>5</td>
-                      <td><input type="radio" name="Van" value="Van"></td>
-                 </tr>
-                 <tr>
-                     <td>AC</td>
-                     <td>12:45</td>
-                     <td>01-01-2016</td>
-                     <td>Lahore</td>
-                     <td>5</td>
-                     <td><input type="radio" name="Van" value="Van"></td>
-                </tr>
+                 
+                  </c:forEach>
               </tbody>
                 </table>
             </div>
-            <div class="col-md-4 about-grid"> 
+              <div class="col-md-8 about-grid">  </div>
+            <div class="col-md-1 about-grid">  </div>
+            <div class="col-md-3 about-grid"> 
 				<form action="http://google.com">
                     <input type="submit" value="Submit request" />
                    
