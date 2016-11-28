@@ -57,7 +57,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="banner-grids">
                 <div class ="row">
-				<div class="col-md-2 banner-grid">
+                 <form:form commandName="newWebdata"
+							name="createWebdataForm" method="POST"
+							action="${pageContext.request.contextPath}/fixedDeposit?fdAction=create">
+						<div class="col-md-2 banner-grid">
 					<!--	<select class="sel">
 					 	<option value="">Destination</option>
 						<option value="">Islamabad</option>
@@ -72,38 +75,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</select>		 -->
 					
 							   <!-- Spring tags added by Saadat -->
-                <form:form commandName="newWebdata"
-		name="createWebdataForm" method="POST"
-		action="${pageContext.request.contextPath}/fixedDeposit?fdAction=create">
-		
-		
+               
 							<form:select path="destination" items="${destinationList}" /><font
 								style="color: #C11B17;"><form:errors path="destination"/></font>
-		
-		
-		</form:form>
-											
-				</div>
-                <div class="col-md-2 banner-grid">
-<!--						<select class="sel">
-					<option value="">DATE</option>
-                        <option value="">ADD CALENDAR</option>      
-					</select>							-->
-                <input type="date" name="usr_date">
-				</div>
-				<div class="col-md-2 banner-grid">
-			<!--		<select class="sel">
-						<option value="">TIME!</option>  
-						</select>       -->
-                    <input type="time" name="usr_time" >
-				</div>
-				<div class="col-md-2 banner-grid">
-					<select class="sel">
-						<option value="">Type</option>
-						<option value="">AC</option>
-                        <option value="">Economy</option>
-					</select>									
-				</div>
+						
+				
+						</div>
+		                <div class="col-md-2 banner-grid">
+		                 <!--	<select class="sel">
+							<option value="">DATE</option>
+		                        <option value="">ADD CALENDAR</option>      
+							</select>							-->
+		                <input type="date" name="usr_date">
+						</div>
+						<div class="col-md-2 banner-grid">
+					<!--		<select class="sel">
+								<option value="">TIME!</option>  
+								</select>       -->
+		                    <input type="time" name="usr_time" >
+						</div>
+						<div class="col-md-2 banner-grid">
+						<!-- 		<select class="sel">
+								<option value="">Type</option>
+								<option value="">AC</option>
+		                        <option value="">Economy</option>
+							</select>	 -->
+							 <!-- Spring tags added by Saadat -->
+               
+							<form:select path="type" items="${vanTypeList}" /><font
+								style="color: #C11B17;"><form:errors path="type"/></font>
+							
+							
+							
+							</div>
+				</form:form>								
+				
 				<div class="col-md-2 banner-grid">
 					<select class="sel">
 						<option value="">Seats</option>
