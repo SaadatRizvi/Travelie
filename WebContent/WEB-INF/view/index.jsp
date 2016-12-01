@@ -59,20 +59,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class ="row">
                  <form:form commandName="newWebdata"
 							name="createWebdataForm" method="POST"
-							action="${pageContext.request.contextPath}/fixedDeposit?fdAction=create">
+							action="${pageContext.request.contextPath}/homepage">
+						<!--  	action="${pageContext.request.contextPath}/fixedDeposit?fdAction=create">    -->
+							
 						<div class="col-md-2 banner-grid">
-					<!--	<select class="sel">
-					 	<option value="">Destination</option>
-						<option value="">Islamabad</option>
-						<option value="">Rawalpindi</option>
-						<option value="">Lahore</option>
-						<option value="">Faisalabad</option>
-                        <option value="">Peshawar</option>
-                        <option value="">Multan</option>
-                        <option value="">Karachi</option>
-                        <option value="">Abbotabad</option>
-                        <option value="">Hyderabad</option>
-					</select>		 -->
+				
 					
 							   <!-- Spring tags added by Saadat -->
                
@@ -82,35 +73,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 						</div>
 		                <div class="col-md-2 banner-grid">
-		                 <!--	<select class="sel">
-							<option value="">DATE</option>
-		                        <option value="">ADD CALENDAR</option>      
-							</select>							-->
-		                <input type="date" name="usr_date">
+		               <form:input path="departureDate" type="date" />
+		               <!--  <input type="date" name="usr_date">   -->
 						</div>
 						<div class="col-md-2 banner-grid">
-					<!--		<select class="sel">
-								<option value="">TIME!</option>  
-								</select>       -->
-		                    <input type="time" name="usr_time" >
+						
+						 <form:input path="departureTime" type="time" />
+					 <!--     <input type="time" name="usr_time" > -->
 						</div>
 						<div class="col-md-2 banner-grid">
-						<!-- 		<select class="sel">
-								<option value="">Type</option>
-								<option value="">AC</option>
-		                        <option value="">Economy</option>
-							</select>	 -->
-							 <!-- Spring tags added by Saadat -->
+					 <!-- Spring tags added by Saadat -->
                
 							<form:select path="type" items="${vanTypeList}" /><font
-								style="color: #C11B17;"><form:errors path="type"/></font>
-							
-							
-							
+							style="color: #C11B17;"><form:errors path="type"/></font>
+																				
 							</div>
-				</form:form>								
+							
+							<div class="col-md-2 banner-grid">
+							</div>
+							
+												
 				
-				<div class="col-md-2 banner-grid">
+			<!--  	<div class="col-md-2 banner-grid">
 					<select class="sel">
 						<option value="">Seats</option>
 						<option value="">1</option>
@@ -129,12 +113,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					    <option value="">14</option>
 					    <option value="">15</option>
 					</select>									
-				</div>
+				</div>   -->
 				<div class="col-md-2 search">
-					<form action="#" method="post">
+					
 						<input type="submit" value="Submit request">
-					</form>
+					
 				</div>
+				
+				</form:form>
                    </div>
 				<div class="clearfix"></div>
 			</div>
