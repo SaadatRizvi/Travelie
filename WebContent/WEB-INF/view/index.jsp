@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class ="row">
                  <form:form commandName="newWebdata"
 							name="createWebdataForm" method="POST"
-							action="${pageContext.request.contextPath}/homepage">
+							action="${pageContext.request.contextPath}/homepage?tAction=create">
 						<!--  	action="${pageContext.request.contextPath}/fixedDeposit?fdAction=create">    -->
 							
 						<div class="col-md-2 banner-grid">

@@ -104,7 +104,7 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 	@InitBinder(value = "newWebdata")
 	public void initBinder_newWebData(WebDataBinder webDataBinder){
 		
-		// Change departureDate in webdata to date type instead of String for improvement
+		// Change departureDate in webdata to 'Date' type instead of String for improvement
 		
 		/*webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(
 			new SimpleDateFormat("MM-dd-yyyy"), false));
