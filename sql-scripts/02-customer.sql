@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `TravelieDBB` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `TravelieDBB`;
+CREATE DATABASE  IF NOT EXISTS `Learn` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `Learn`;
 -- MySQL dump 10.13  Distrib 5.6.13, for osx10.6 (i386)
 --
 -- Host: 127.0.0.1    Database: TravelieDB2
