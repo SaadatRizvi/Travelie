@@ -16,7 +16,7 @@
 
 		<div id ="wrapper">
 			<div id ="header">
-				<h2>CRM - Van Relationship Manager</h2>
+				<h2>VRM - Van Relationship Manager</h2>
 			</div>
 		</div>
 		
@@ -32,7 +32,7 @@
 			<table>
 			   <tr>
 			   		<th>ID</th>
-			   		<th>Vehicle_reg#</th>
+			   		<th>Vehicle Reg#</th>
 			   		<th>Type</th>
 			   		<th>Total Seats</th>
 			   		<th>Category</th>
