@@ -32,17 +32,17 @@
 				<tbody>
 				<tr>
 					<td><label>Van ID:</label></td>
-					<td><form:input path="van" /> </td>
+					<td><form:input path="van.id" /> </td>
 					
 				</tr>
 				<tr>
 					<td><label>Driver ID:</label></td>
-					<td><form:input path="driver" /> </td>
+					<td><form:input path="driver.id" /> </td>
 					
 				</tr>
 				<tr>
 					<td><label>Route ID:</label></td>
-					<td><form:input path="route" /> </td>
+					<td><form:input path="route.id" /> </td>
 					
 				</tr>
 				<tr>
