@@ -26,7 +26,7 @@ public class RouteDAOImpl implements RouteDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		Query<Route> theQuery =
-				currentSession.createQuery("from Route order by regNumber", Route.class);
+				currentSession.createQuery("from Route order by id", Route.class);
 		
 		List<Route> routes = theQuery.getResultList();
 		

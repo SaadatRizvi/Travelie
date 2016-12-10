@@ -26,7 +26,7 @@ public class TicketDAOImpl implements TicketDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		Query<Ticket> theQuery =
-				currentSession.createQuery("from Ticket order by regNumber", Ticket.class);
+				currentSession.createQuery("from Ticket order by id", Ticket.class);
 		
 		List<Ticket> tickets = theQuery.getResultList();
 		

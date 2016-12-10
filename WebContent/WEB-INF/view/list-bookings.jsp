@@ -58,9 +58,9 @@
 			   </c:url>
 			   
 				 <tr>
-				 	<td> ${tempBooking.van} </td>
-				 	<td> ${tempBooking.driver} </td>
-				 	<td> ${tempBooking.route} </td>	
+				 	<td> ${tempBooking.van.id} </td>
+				 	<td> ${tempBooking.driver.id} </td>
+				 	<td> ${tempBooking.route.id} </td>	
 					<td> ${tempBooking.registeredSeats} </td>
 					<td> ${tempBooking.departureDate} </td>
 					<td> ${tempBooking.departureTime} </td>

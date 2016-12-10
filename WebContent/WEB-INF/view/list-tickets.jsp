@@ -55,8 +55,8 @@
 			   
 				 <tr>
 				 	<td> ${tempTicket.id} </td>
-				 	<td> ${tempTicket.booking} </td>
-				 	<td> ${tempTicket.customer} </td>	
+				 	<td> ${tempTicket.booking.id} </td>
+				 	<td> ${tempTicket.customer.id} </td>	
 					<td> ${tempTicket.seatNumber} </td>
 					
 					

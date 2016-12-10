@@ -26,7 +26,7 @@ public class BookingDAOImpl implements BookingDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		Query<Booking> theQuery =
-				currentSession.createQuery("from Booking order by regNumber", Booking.class);
+				currentSession.createQuery("from Booking order by id", Booking.class);
 		
 		List<Booking> bookings = theQuery.getResultList();
 		
