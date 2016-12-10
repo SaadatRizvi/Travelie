@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.travelie.entity.Customer;
+import com.travelie.entity.Van;
 import com.travelie.service.CustomerService;
 
 @Controller
@@ -45,6 +46,33 @@ public String showFormForAdd(Model theModel){
 
 @PostMapping("/saveCustomer")
 public String saveCustomer(@ModelAttribute("customer") Customer theCustomer){
+	
+	
+	boolean errors = false;
+
+
+	 List<Customer> customers = customerService.getCustomers();
+
+		boolean isValidRegistration = true;
+		
+		
+		for (Customer customerTemp : customers){
+			
+			if (theCustomer.getRegNumber() == customerTemp.getRegNumber()){
+				isValidRegistration = false;break;
+			}
+			
+		}
+		
+		if (!isValidRegistration){
+			theCustomer.setRegNumber(999999999);
+		
+						errors = true;
+		}
+		if (errors){
+			
+			return "customer-form";
+		}
 	
 	customerService.saveCustomer(theCustomer);
 	
