@@ -40,7 +40,7 @@ public class Booking {
 	
 	@Column(name="departure_time")
 	private String departureTime;
-	@Column(name="arrival_time")
+	@Column(name="arival_time")
 	private String arrivalTime;
 	@Column(name="departure_date")
 	private String departureDate;
