@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.travelie.entity.Destination;
+import com.travelie.entity.Van;
+import com.travelie.entity.VanType;
 import com.travelie.service.DestinationService;
 
 @Controller
@@ -46,6 +48,35 @@ public String showFormForAdd(Model theModel){
 
 @PostMapping("/saveDestination")
 public String saveDestination(@ModelAttribute("destination") Destination theDestination){
+	
+	
+	boolean errors = false;
+
+
+	 List<Destination> destinations = destinationService.getDestinations();
+
+		boolean isValidRegistration = true;
+		
+		
+		for (Destination destinationTemp : destinations){
+			
+			if (theDestination.getLocation().equals(destinationTemp.getLocation())){
+				isValidRegistration = false;break;
+			}
+			
+		}
+		
+		if (!isValidRegistration){
+			theDestination.setLocation("Please enter a Unique Destination");
+		
+						errors = true;
+		}
+					
+			
+			if (errors){
+				
+				return "destination-form";
+			}
 	
 	destinationService.saveDestination(theDestination);
 	
