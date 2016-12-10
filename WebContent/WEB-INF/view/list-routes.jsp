@@ -59,7 +59,7 @@
 				 <tr>
 				 	<td> ${tempRoute.id} </td>
 				 	<td> ${tempRoute.source} </td>
-				 	<td> ${tempRoute.destination} </td>	
+				 	<td> ${tempRoute.destination.id} </td>	
 					<td> ${tempRoute.expectedTravelTime} </td>
 					<td> ${tempRoute.economyFare} </td>
 					<td> ${tempRoute.acFare} </td>
