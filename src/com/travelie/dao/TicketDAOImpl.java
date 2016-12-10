@@ -7,12 +7,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.travelie.entity.Route;
+import com.travelie.entity.Ticket;
 
 
 @Repository
 //change Query in every DAO implementation
-public class TicketDAOImpl implements RouteDAO {
+public class TicketDAOImpl implements TicketDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -20,25 +20,25 @@ public class TicketDAOImpl implements RouteDAO {
 	
 	@Override
 	
-	public List<Route> getRoutes() {
+	public List<Ticket> getTickets() {
 		
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Route> theQuery =
-				currentSession.createQuery("from Route order by regNumber", Route.class);
+		Query<Ticket> theQuery =
+				currentSession.createQuery("from Ticket order by regNumber", Ticket.class);
 		
-		List<Route> routes = theQuery.getResultList();
+		List<Ticket> tickets = theQuery.getResultList();
 		
-		return routes;
+		return tickets;
 	}
 
 
 	@Override
-	public void saveRoute(Route theRoute) {
+	public void saveTicket(Ticket theTicket) {
      Session currentSession = sessionFactory.getCurrentSession();
 		
-		currentSession.saveOrUpdate(theRoute);
+		currentSession.saveOrUpdate(theTicket);
 		
 		
 		
@@ -46,23 +46,23 @@ public class TicketDAOImpl implements RouteDAO {
 
 
 	@Override
-	public Route getRoute(int theId) {
+	public Ticket getTicket(int theId) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Route theRoute = currentSession.get(Route.class, theId);
+		Ticket theTicket = currentSession.get(Ticket.class, theId);
 		
 		
-		return theRoute;
+		return theTicket;
 	}
 
 
 	@Override
-	public void deleteRoute(int theId) {
+	public void deleteTicket(int theId) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Route> theQuery =
-				currentSession.createQuery("delete from Route where id=:routeId");
-		theQuery.setParameter("routeId", theId);
+		Query<Ticket> theQuery =
+				currentSession.createQuery("delete from Ticket where id=:ticketId");
+		theQuery.setParameter("ticketId", theId);
 		
 		theQuery.executeUpdate();
 		
