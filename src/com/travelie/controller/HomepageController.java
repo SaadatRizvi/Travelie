@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -41,6 +42,8 @@ public class HomepageController {
 	
 	@Autowired
 	DestinationService destinationService;
+	
+	boolean loggedin = false;
 
 	
 	@RequestMapping("homepage")
@@ -61,6 +64,31 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 		
 		
 	}
+	
+	
+	@PostMapping(value = "/homepage", params = "tAction=create")
+	public String verifyWebData(@ModelAttribute(value = "newWebdata") Webdata webdata){
+		
+		if (!loggedin){
+			
+			// return "login-form";
+		}
+		
+	//	webdataService.saveWebdata(webdata);
+		
+		
+		
+		
+		
+		
+		
+		return "login-form";
+		
+	}
+	
+	
+	
+	
 	
 	@ModelAttribute(value = "destinationList")
 	public List<String> listDestinations() {
