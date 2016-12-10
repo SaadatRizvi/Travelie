@@ -37,7 +37,7 @@
 				</tr>
 				<tr>
 					<td><label>Destination:</label></td>
-					<td><form:input path="destination" /> </td>
+					<td><form:input path="destination.id" /> </td>
 					
 				</tr>
 				<tr>
