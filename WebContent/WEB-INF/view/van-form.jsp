@@ -11,14 +11,14 @@
 	
 	<link type ="text/css"
 	rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/add-customer-style.css">
+	href="${pageContext.request.contextPath}/resources/css/add-form-style.css">
       
 	
 	
 <body>
 	<div id= "wrapper">
 		<div id="header">
-			<h2>CRM - Van Relationship Manager</h2>
+			<h2>VRM - Van Relationship Manager</h2>
 		</div>
 	</div>
 	
@@ -31,7 +31,7 @@
 			<table>
 				<tbody>
 				<tr>
-					<td><label>Vehicle_reg#:</label></td>
+					<td><label>Vehicle Reg#:</label></td>
 					<td><form:input path="vehicleRegistration" />
 					<form:errors path="vehicleRegistration"/> </td>
 					
@@ -53,7 +53,7 @@
 				</tr>
 				
 				<tr>
-					<td><label>Flagged(1/0 for y/n):</label></td>
+					<td><label>Flagged (1/0 for y/n):</label></td>
 					<td><form:input path="flagged" /> </td>
 					
 				</tr>
