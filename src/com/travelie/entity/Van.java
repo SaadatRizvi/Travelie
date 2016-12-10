@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="van")
@@ -25,14 +28,28 @@ public class Van {
 	@Column(name="total_seats")
 	private int totalSeats;
 	
-	@Column(name="category")
-	private String category;
+	@ManyToOne
+	@JoinColumn(name="vancategory_id")
+	private VanType category;
+	
+	@Transient
+	private String vanTypeCategory;
 	
 	@Column(name="flagged")
 	private int flagged;	
 	
 	public Van(){
-		
+		//vanTypeCategory = category.getType();        
+	}
+
+
+	public String getVanTypeCategory() {
+		return vanTypeCategory;
+	}
+
+
+	public void setVanTypeCategory(String vanTypeCategory) {
+		this.vanTypeCategory = vanTypeCategory;
 	}
 
 
@@ -96,35 +113,19 @@ public class Van {
 	}
 
 
-
-
-
-
-	public String getCategory() {
+	public VanType getCategory() {
 		return category;
 	}
 
 
-
-
-
-
-	public void setCategory(String category) {
+	public void setCategory(VanType category) {
 		this.category = category;
 	}
-
-
-
-
 
 
 	public int getFlagged() {
 		return flagged;
 	}
-
-
-
-
 
 
 	public void setFlagged(int flagged) {
@@ -137,6 +138,8 @@ public class Van {
 		return "Van [id=" + id + ", vehicleRegistration=" + vehicleRegistration + ", vehicleType=" + vehicleType
 				+ ", totalSeats=" + totalSeats + ", category=" + category + ", flagged=" + flagged + "]";
 	}
+
+
 
 
 

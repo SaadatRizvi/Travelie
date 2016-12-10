@@ -32,7 +32,8 @@
 				<tbody>
 				<tr>
 					<td><label>Vehicle_reg#:</label></td>
-					<td><form:input path="vehicleRegistration" /> </td>
+					<td><form:input path="vehicleRegistration" />
+					<form:errors path="vehicleRegistration"/> </td>
 					
 				</tr>
 				<tr>
@@ -47,7 +48,7 @@
 				</tr>
 				<tr>
 					<td><label>Category:</label></td>
-					<td><form:input path="category" /> </td>
+					<td><form:input path="vanTypeCategory" /> </td>
 					
 				</tr>
 				

@@ -60,7 +60,7 @@
 				 	<td> ${tempVan.vehicleRegistration} </td>
 				 	<td> ${tempVan.vehicleType} </td>
 				 	<td> ${tempVan.totalSeats} </td>	
-					<td> ${tempVan.category} </td>
+					<td> ${tempVan.vanTypeCategory} </td>
 					<td> ${tempVan.flagged} </td>
 					
 					
