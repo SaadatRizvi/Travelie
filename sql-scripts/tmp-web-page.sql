@@ -20,13 +20,13 @@ USE `TravelieDBB`;
 
 
 --
--- Table structure for table `webtable`
+-- Table structure for table `webdata`
 --
 
-DROP TABLE IF EXISTS `webtable`;
+DROP TABLE IF EXISTS `webdata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `webtable` (
+CREATE TABLE `webdata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) NOT NULL,
   `departure_time` varchar(45) NOT NULL,
@@ -42,21 +42,21 @@ CREATE TABLE `webtable` (
 
 
 --
--- Dumping data for table `webtable`
+-- Dumping data for table `webdata`
 --
 
-LOCK TABLES `webtable` WRITE;
-/*!40000 ALTER TABLE `webtable` DISABLE KEYS */;
+LOCK TABLES `webdata` WRITE;
+/*!40000 ALTER TABLE `webdata` DISABLE KEYS */;
 
 
-INSERT INTO `webtable` VALUES 
+INSERT INTO `webdata` VALUES 
 	(1,'AC','1:30 pm','25-6-2016','Lahore','3'),
 	(2, 'Economy','12:30 pm','5-6-2016','Islamabad','33'),
 	(3,'AC','11:30 pm','2-6-2016','Karachi','32'),
 	(4,'Economy','2:30 pm','23-6-2016','Multan','23'),
 	(5,'AC','8:30 pm','22-6-2016','Lahore','13');
 
-/*!40000 ALTER TABLE `webtable` ENABLE KEYS */;
+/*!40000 ALTER TABLE `webdata` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
