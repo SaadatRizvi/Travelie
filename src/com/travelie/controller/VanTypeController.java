@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.travelie.entity.Van;
 import com.travelie.entity.VanType;
 import com.travelie.service.VanTypeService;
 
@@ -46,6 +47,35 @@ public String showFormForAdd(Model theModel){
 
 @PostMapping("/saveVanType")
 public String saveVanType(@ModelAttribute("vanType") VanType theVanType){
+	
+	
+	boolean errors = false;
+
+
+	 List<VanType> vanTypes = vanTypeService.getVanTypes();
+
+		boolean isValidRegistration = true;
+		
+		
+		for (VanType vanTypeTemp : vanTypes){
+			
+			if (theVanType.getType().equals(vanTypeTemp.getType())){
+				isValidRegistration = false;break;
+			}
+			
+		}
+		
+		if (!isValidRegistration){
+			theVanType.setType("Please enter a Unique Type");
+		
+						errors = true;
+		}
+					
+			
+			if (errors){
+				
+				return "vanType-form";
+			}
 	
 	vanTypeService.saveVanType(theVanType);
 	
