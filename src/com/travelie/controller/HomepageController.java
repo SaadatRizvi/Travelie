@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.travelie.entity.Customer;
 import com.travelie.entity.Destination;
+import com.travelie.entity.LoginDetails;
 import com.travelie.entity.VanType;
 import com.travelie.entity.Webdata;
+import com.travelie.service.CustomerService;
 import com.travelie.service.DestinationService;
 import com.travelie.service.VanTypeService;
 import com.travelie.service.WebdataService;
@@ -30,7 +33,7 @@ import com.travelie.service.WebdataService;
 @Controller
 @RequestMapping(value = "/")
 @SessionAttributes(value = { "destinationList",
-"newWebdata" })
+"customer","loginDetails" })
 public class HomepageController {
 	private static Logger logger = Logger
 			.getLogger(HomepageController.class);
@@ -43,6 +46,11 @@ public class HomepageController {
 	@Autowired
 	DestinationService destinationService;
 	
+	@Autowired
+	CustomerService customerService;
+	
+	
+	
 	boolean loggedin = false;
 
 	
@@ -50,6 +58,9 @@ public class HomepageController {
 	public String showHomepage(@ModelAttribute(value = "newWebdata") Webdata webdata,Model model){
 List<Webdata> webdatas = webdataService.getWebdatas();
 		
+			
+
+
 		model.addAttribute("webdatas", webdatas);
 		
 		logger.info("newWebdata: id: "+ webdata.getId());
@@ -67,11 +78,27 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 	
 	
 	@PostMapping(value = "/homepage", params = "tAction=create")
-	public String verifyWebData(@ModelAttribute(value = "newWebdata") Webdata webdata){
+	public String verifyWebData(@ModelAttribute(value = "newWebdata") Webdata webdata,
+			Model model, @ModelAttribute(value = "customer") Customer customer,
+			@ModelAttribute(value = "loginDetails")LoginDetails loginDetails){
+		
+		String type = webdata.getType();
+		String time = webdata.getDepartureTime();
+		String date = webdata.getDepartureDate();
+		String destination = webdata.getDestination();
+		
+		logger.info(" Time:"+ time +"s");
+		logger.info(" Date:"+ date +"s");
+		
+		if (type.equals("Type") || time.equals("") || date.equals("")) return "redirect:/homepage";
+		if(destination.equals("Destination")) return "redirect:/homepage";
+		
 		
 		if (!loggedin){
+			model.addAttribute("customer", customer);
+			model.addAttribute("loginDetails", loginDetails);
 			
-			// return "login-form";
+			 return "login-form";
 		}
 		
 	//	webdataService.saveWebdata(webdata);
@@ -124,9 +151,30 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 	public Webdata getNewWebdata() {
 		Webdata webdata = new Webdata();
 		webdata.setDestination("Destination");
+		webdata.setType("Type");
 		logger.info("getNewWebdata() method: Returning a new instance of Webdata");
 		return webdata;
 	}
+	
+	
+	
+	@ModelAttribute(value = "customer")
+	public Customer getCustomer() {
+		Customer customer = new Customer();
+		
+		logger.info("getCustomer() method: Returning a new instance of Customer");
+		return customer;
+	}
+	
+	
+	@ModelAttribute(value = "loginDetails")
+	public LoginDetails getloginDetails() {
+		LoginDetails loginDetails = new LoginDetails();
+		
+		logger.info("getLoginDetails() method: Returning a new instance of LoginDetails");
+		return loginDetails;
+	}
+	
 	
 	
 	@InitBinder(value = "newWebdata")

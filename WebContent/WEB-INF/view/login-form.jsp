@@ -1,3 +1,5 @@
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -26,14 +28,17 @@
   <div class="card"></div>
   <div class="card">
     <h1 class="title">Login</h1>
-    <form>
+    <form:form action="authenticateUser" modelAttribute="loginDetails" method="POST">
+    
       <div class="input-container">
-        <input type="text" id="Username" required="required"/>
+     <!--    <input type="text" id="Username" required="required"/> --> 
+        <form:input path="userName" id="Username" required="required" /> 
         <label for="Username">Username</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="Password" required="required"/>
+      <!--    <input type="password" id="Password" required="required"/> --> 
+         <form:input path="password" id="Username" required="required" /> 
         <label for="Password">Password</label>
         <div class="bar"></div>
       </div>
@@ -41,58 +46,67 @@
         <button><span>Go</span></button>
       </div>
       <!--<div class="footer"><a href="#">Forgot your password?</a></div>-->
-    </form>
+    
+    </form:form>
   </div>
   <div class="card alt">
     <div class="toggle"></div>
     <h1 class="title">Register
       <div class="close"></div>
     </h1>
-    <form>
+    <form:form action="registerCustomer" modelAttribute="customer" method="POST">
+    
       <div class="input-container">  
-        <input type="text" id="First Name" required="required"/>
+      
+        <form:input path="firstName" id="First Name" required="required"/> 
         <label for="First Name">First Name</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="text" id="Last Name" required="required"/>
+       
+        <form:input path="lastName"  id="Last Name" required="required"/>
         <label for="Last Name">Last Name</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="text" id="Username" required="required"/>
+       
+        <form:input path="username" id="Username" required="required"/>
         <label for="Username">Username</label>
         <div class="bar"></div>
       </div>
+        <div class="input-container">
+        
+        <form:input path="password" id="Password" required="required"/>
+        <label for="Password">Password</label>
+        <div class="bar"></div>
+      </div>
+      
       <div class="input-container">
-        <input type="text" id="GIKI ID" required="required"/>
+        
+        <form:input path="regNumber" id="GIKI ID" required="required"/> 
         <label for="GIKI ID">GIKI ID</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="text" id="Email" required="required"/>
+       
+        <form:input path="email" id="Email" required="required"/>
         <label for="Email">Email</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="text" id="Phone number" required="required"/>
+        
+        <form:input path="phoneNumber" id="Phone number" required="required"/>
         <label for="Phone number">Phone number</label>
         <div class="bar"></div>
       </div>
-      <div class="input-container">
-        <input type="password" id="Password" required="required"/>
-        <label for="Password">Password</label>
-        <div class="bar"></div>
-      </div>
-      <div class="input-container">
-        <input type="password" id="Repeat Password" required="required"/>
-        <label for="Repeat Password">Repeat Password</label>
-        <div class="bar"></div>
-      </div>
+    
+      
       <div class="button-container">
-        <button><span>Next</span></button>
+      
+        <input type="submit" value="Save"  />
       </div>
-    </form>
+    
+    </form:form>
   </div>
 </div>
 <!-- Portfolio--><a id="portfolio" href="http://andytran.me/" title="View my portfolio!"><i class="fa fa-link"></i></a>
