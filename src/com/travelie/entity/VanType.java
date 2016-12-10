@@ -34,6 +34,20 @@ public class VanType {
 	 @OneToMany(mappedBy="category",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	    private Set<Van> vans;
 		
+	public Set<Van> getVans() {
+		return vans;
+	}
+
+
+
+
+	public void setVans(Set<Van> vans) {
+		this.vans = vans;
+	}
+
+
+
+
 	public VanType(){
 		
 	}

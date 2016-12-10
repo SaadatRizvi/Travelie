@@ -1,10 +1,15 @@
 package com.travelie.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +40,25 @@ public class Customer {
 	private int flagged;
 	
 	
+	//Ticket.java   reference
+		 @OneToMany(mappedBy="customer",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+		 private Set<Ticket> tickets;
+	
+		 
+		 
+		 
+		 
+		 
+	public Set<Ticket> getTickets() {
+			return tickets;
+		}
+
+
+		public void setTickets(Set<Ticket> tickets) {
+			this.tickets = tickets;
+		}
+
+
 	public Customer(){
 		
 	}

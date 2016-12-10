@@ -1,12 +1,17 @@
 package com.travelie.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -38,6 +43,22 @@ public class Van {
 	@Column(name="flagged")
 	private int flagged;	
 	
+	//Booking.java   reference
+	 @OneToMany(mappedBy="van",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	    private Set<Booking> bookings;
+	
+	 	 
+	
+	public Set<Booking> getBookings() {
+		return bookings;
+	}
+
+
+	public void setBookings(Set<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+
 	public Van(){
 		//vanTypeCategory = category.getType();        
 	}
