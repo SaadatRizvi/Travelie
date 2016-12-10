@@ -31,11 +31,6 @@
 			<table>
 				<tbody>
 				<tr>
-					<td><label>ID:</label></td>
-					<td><form:input path="id" /> </td>
-					
-				</tr>
-				<tr>
 					<td><label>Destination:</label></td>
 					<td><form:input path="location" /> </td>
 					
