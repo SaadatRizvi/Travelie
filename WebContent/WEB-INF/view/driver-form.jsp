@@ -11,7 +11,7 @@
 	
 	<link type ="text/css"
 	rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/add-customer-style.css">
+	href="${pageContext.request.contextPath}/resources/css/add-form-style.css">
       
 	
 	
