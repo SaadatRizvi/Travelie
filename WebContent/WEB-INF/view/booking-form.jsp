@@ -46,7 +46,7 @@
 					
 				</tr>
 				<tr>
-					<td><label>Registered Seats #:</label></td>
+					<td><label>Registered Seats:</label></td>
 					<td><form:input path="registeredSeats" /> </td>
 					
 				</tr>
