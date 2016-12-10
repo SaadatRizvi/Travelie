@@ -32,12 +32,12 @@
 				<tbody>
 				<tr>
 					<td><label>Booking ID:</label></td>
-					<td><form:input path="booking" /> </td>
+					<td><form:input path="booking.id" /> </td>
 					
 				</tr>
 				<tr>
 					<td><label>Customer ID:</label></td>
-					<td><form:input path="customer" /> </td>
+					<td><form:input path="customer.id" /> </td>
 					
 				</tr>
 				<tr>
