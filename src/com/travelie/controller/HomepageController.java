@@ -46,7 +46,7 @@ public class HomepageController {
 	boolean loggedin = false;
 
 	
-	@RequestMapping("homepage")
+	@RequestMapping("/homepage")
 	public String showHomepage(@ModelAttribute(value = "newWebdata") Webdata webdata,Model model){
 List<Webdata> webdatas = webdataService.getWebdatas();
 		
