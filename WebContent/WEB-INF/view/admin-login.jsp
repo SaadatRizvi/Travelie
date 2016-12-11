@@ -4,7 +4,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Travelie Admin Login</title>
+  <title>Travelie EPanel Login</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
@@ -21,7 +21,7 @@
 <!-- Mixins-->
 <!-- Pen Title-->
 <div class="pen-title">
-  <h1>Travelie Admin Login</h1><span> 
+  <h1>Travelie EPanel Login</h1><span> 
 </div>
 
 <div class="container">
