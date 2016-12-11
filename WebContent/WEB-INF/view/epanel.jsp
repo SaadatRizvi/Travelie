@@ -13,20 +13,40 @@
   <h1>Travelie EPanel</h1>
 
 <div>
-  <a href="#" class="button">Hover Me</a>  
+  <a href="${pageContext.request.contextPath}/customer" class="button">Customer</a>  
   </div>
 
 <div>
-  <a href="#" class="button">Hover Me too</a>  
+  <a href="${pageContext.request.contextPath}/driver" class="button">Driver</a>  
   </div>
 
 <div>
-  <a href="#" class="button">Hover Me again</a>  
+  <a href="${pageContext.request.contextPath}/vanType" class="button">Van Type</a>  
   </div>
 
 <div>
-  <a href="#" class="button">Hover Me pls</a>  
-</div>
+  <a href="${pageContext.request.contextPath}/van" class="button">Van</a>  
+  </div>
+
+<div>
+  <a href="${pageContext.request.contextPath}/destination" class="button">Destination</a>  
+  </div>
+
+<div>
+  <a href="${pageContext.request.contextPath}/route" class="button">Route</a>  
+  </div>
+
+<div>
+  <a href="${pageContext.request.contextPath}/booking" class="button">Booking</a>  
+  </div>
+
+<div>
+  <a href="${pageContext.request.contextPath}/ticket" class="button">Ticket</a>  
+  </div>
+
+<div>
+  <a href="${pageContext.request.contextPath}/admin" class="button">Admin</a>  
+  </div>
 
 </body>
 </html>
