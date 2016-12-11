@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -27,6 +29,8 @@ import com.travelie.entity.Destination;
 import com.travelie.entity.Driver;
 import com.travelie.entity.LoginDetails;
 import com.travelie.entity.Route;
+import com.travelie.entity.Ticket;
+import com.travelie.entity.TicketDetail;
 import com.travelie.entity.Van;
 import com.travelie.entity.VanType;
 import com.travelie.entity.Webdata;
@@ -35,6 +39,7 @@ import com.travelie.service.CustomerService;
 import com.travelie.service.DestinationService;
 import com.travelie.service.DriverService;
 import com.travelie.service.RouteService;
+import com.travelie.service.TicketService;
 import com.travelie.service.VanService;
 import com.travelie.service.VanTypeService;
 import com.travelie.service.WebdataService;
@@ -52,6 +57,9 @@ public class HomepageController {
 	
 	@Autowired
 	VanTypeService vanTypeService;
+	
+	@Autowired
+	TicketService ticketService;
 	
 	@Autowired
 	DestinationService destinationService;
@@ -77,6 +85,7 @@ public class HomepageController {
 	
 	boolean loggedin = false;
 
+	boolean newWebDataSubmit = false;
 	
 	@RequestMapping("/homepage")
 	public String showHomepage(@ModelAttribute(value = "newWebdata") Webdata webdata,Model model){
@@ -107,6 +116,56 @@ public class HomepageController {
 	}
 	
 	
+	
+	@GetMapping(value="/homepage", params="bId")
+	public String  setWebDataDetails(@RequestParam(value = "bId") int id, @ModelAttribute(value = "newWebdata") Webdata webdata,
+			Model model, @ModelAttribute(value = "customer") Customer customer,
+			@ModelAttribute(value = "loginDetails")LoginDetails loginDetails){
+		
+		
+		logger.info("bId ="+id);
+		
+		
+		Booking booking = bookingService.getBooking(id);
+		
+		logger.info("G1");
+		
+		webdata =  booking.getWebdata();
+		 logger.info("webdata: "+webdata);
+		 logger.info("Gaaaa1");
+		 model.addAttribute("newWebdata", webdata);
+		 
+		 logger.info("G221");
+		
+		/* Webdata webdata2 = booking.getWebdata();
+		 logger.info("bId ="+id);
+		 webdata.setId(webdata2.getId());
+		*/
+	/*	
+		webdata.setBookingWebdata(booking);
+		
+		webdata.setType(booking.getVan().getCategory().getType());
+		webdata.setDepartureDate(booking.getDepartureDate());
+		webdata.setDepartureTime(booking.getDepartureTime());
+		webdata.setDestination(booking.getRoute().getDestination().getLocation());
+		*/
+		
+		
+		if (!loggedin){
+			model.addAttribute("customer", customer);
+			model.addAttribute("loginDetails", loginDetails);
+			
+			 return "login-form";
+		}
+		
+
+		 logger.info("G4444");
+		return "redirect:/registerCustomerBooking";
+	}
+	
+	
+	
+	
 	@PostMapping(value = "/homepage", params = "tAction=create")
 	public String verifyWebData(@ModelAttribute(value = "newWebdata") Webdata webdata,
 			Model model, @ModelAttribute(value = "customer") Customer customer,
@@ -123,20 +182,13 @@ public class HomepageController {
 		if (type.equals("Type") || time.equals("") || date.equals("")) return "redirect:/homepage";
 		if(destination.equals("Destination")) return "redirect:/homepage";
 		
-		
+		newWebDataSubmit = true;
 		if (!loggedin){
 			model.addAttribute("customer", customer);
 			model.addAttribute("loginDetails", loginDetails);
 			
 			 return "login-form";
 		}
-		
-		webdataService.saveWebdata(webdata);
-		
-		
-		
-		
-		
 		
 		
 		return "redirect:/addNewBooking";
@@ -146,7 +198,8 @@ public class HomepageController {
 	
 	
 	@PostMapping(value = "authenticateUser")
-	public String authenticateUser(@ModelAttribute(value = "loginDetails")LoginDetails loginDetails){
+	public String authenticateUser(@ModelAttribute(value = "loginDetails")LoginDetails loginDetails,
+			Model model){
 		
 		
 		boolean validCustomer = false;  // username registered
@@ -164,6 +217,7 @@ public class HomepageController {
 				
 				if (password.equals(temp.getPassword())){
 					
+					model.addAttribute("customer", temp);
 					loggedIn = true;
 				}
 			}
@@ -185,7 +239,102 @@ public class HomepageController {
 			return "login-form";
 		}
 		
+		
+		
+		
+		if(newWebDataSubmit){
 		return "redirect:/addNewBooking";
+		}
+		
+		return "redirect:/registerCustomerBooking";
+		
+		
+	}
+	
+	
+	@GetMapping(value="generateTicket")
+	public String generateTicket(@ModelAttribute(value = "newWebdata") Webdata webdata,
+			@ModelAttribute(value = "booking") Booking booking,
+			@ModelAttribute(value = "loginDetails")LoginDetails loginDetails,
+			@ModelAttribute(value = "customer")Customer customer, Model model
+			,SessionStatus sessionStatus){
+		
+		Ticket newTicket = new Ticket();
+		
+		newTicket.setBooking(booking);
+		newTicket.setCustomer(customer);
+		newTicket.setSeatNumber(booking.getRegisteredSeats());
+		
+		logger.info("newTicket: "+newTicket);
+		
+		TicketDetail ticketDetail = new TicketDetail();
+		
+		
+	  ticketDetail.setId(newTicket.getId());
+	  ticketDetail.setTicketId(newTicket.getId());
+	  ticketDetail.setVanId(booking.getVan().getId());
+	  ticketDetail.setDriverId(booking.getDriver().getId());
+	  ticketDetail.setBookingId(newTicket.getBooking().getId());
+	  ticketDetail.setCustomerId(customer.getId());
+	  ticketDetail.setName(customer.getFirstName() +" "+ customer.getLastName());
+	  ticketDetail.setSource(booking.getRoute().getSource());
+	  ticketDetail.setDestination(booking.getRoute().getDestination().getLocation());
+	  ticketDetail.setDepartureDate(booking.getDepartureDate());
+	  ticketDetail.setDepartureTime(booking.getDepartureTime());
+	  ticketDetail.setSeatNumber(newTicket.getSeatNumber());
+	  
+	  logger.info("ticketDetail: "+ticketDetail);
+		logger.info("webdata: "+webdata);
+		logger.info("booking: "+booking);
+		
+		model.addAttribute("ticketDetail", ticketDetail);
+		 
+		//bookingService.saveDestination(theDestination);
+		ticketService.saveTicket(newTicket);
+		
+		sessionStatus.setComplete();
+		
+		
+		return null;
+		
+	}
+	
+	
+	
+	
+	
+	@GetMapping(value="registerCustomerBooking")
+	public String registerCustomerBooking(@ModelAttribute(value = "newWebdata") Webdata webdata, SessionStatus sessionStatus,
+			Model model){
+		
+		logger.info("registerCustomerBooking(): S1");
+		logger.info("registerCustomerBooking()  webdata:" + webdata);
+		int id =webdata.getBookingWebdata().getId();
+		logger.info("registerCustomerBooking()  id:" + id);
+		
+	//	List<Customer> customers = ticketService.getCustomersBooking(id);
+		logger.info("registerCustomerBooking(): S2");
+		Booking booking = webdata.getBookingWebdata();
+		
+		int i = booking.getRegisteredSeats();
+		i++;
+		booking.setRegisteredSeats(i);
+		
+		
+		
+		int availableSeats =booking.getVan().getTotalSeats()-booking.getRegisteredSeats();
+		
+		webdata.setAvailableSeats(availableSeats);
+		
+		 model.addAttribute("booking", booking);
+		 model.addAttribute("newWebdata", webdata);
+		 
+		//bookingService.saveDestination(theDestination);
+		bookingService.saveBooking(booking);
+		webdataService.saveWebdata(webdata);
+	//	sessionStatus.setComplete();
+		newWebDataSubmit = false;
+		return "redirect:/generateTicket";
 		
 	}
 	
@@ -193,7 +342,8 @@ public class HomepageController {
 	
 	
 	@GetMapping(value="addNewBooking")
-	public String addNewBooking(@ModelAttribute(value = "newWebdata") Webdata webdata, SessionStatus sessionStatus){
+	public String addNewBooking(@ModelAttribute(value = "newWebdata") Webdata webdata, SessionStatus sessionStatus,
+			Model model){
 		
 		Booking newBooking = new Booking();
 		
@@ -248,12 +398,15 @@ public class HomepageController {
 		int availableSeats =newBooking.getVan().getTotalSeats()-newBooking.getRegisteredSeats();
 		webdata.setBookingWebdata(newBooking);
 		webdata.setAvailableSeats(availableSeats);
+		model.addAttribute("booking", newBooking);
 		
+		 model.addAttribute("newWebdata", webdata);
 		//bookingService.saveDestination(theDestination);
 		bookingService.saveBooking(newBooking);
 		webdataService.saveWebdata(webdata);
-		sessionStatus.setComplete();
-		return "redirect:/homepage";
+	//	sessionStatus.setComplete();
+		newWebDataSubmit = false;
+		return "redirect:/generateTicket";
 		
 		}
 		
@@ -304,6 +457,7 @@ public class HomepageController {
 		Booking booking = new Booking();
 		
 		logger.info("getNewBooking() method: Returning a new instance of Booking");
+		
 		return booking;
 	}
 	

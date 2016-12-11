@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.travelie.dao.TicketDAO;
+import com.travelie.entity.Customer;
 import com.travelie.entity.Ticket;
 
 @Service
@@ -49,6 +50,17 @@ public class TicketServiceImpl implements TicketService {
 	@Transactional
 	public void deleteTicket(int theId) {
 		ticketDAO.deleteTicket(theId);
+		
+	}
+
+
+
+	@Override
+	@Transactional
+	public List<Customer> getCustomersBooking(int bId) {
+		
+		return	ticketDAO.getCustomersBooking(bId);
+		
 		
 	}
 

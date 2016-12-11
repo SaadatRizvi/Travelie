@@ -13,15 +13,7 @@ import javax.persistence.Table;
 @Table(name="webdata")
 public class Webdata {
 
-	public Booking getBookingWebdata() {
-		return bookingWebdata;
-	}
-
-
-	public void setBookingWebdata(Booking bookingWebdata) {
-		this.bookingWebdata = bookingWebdata;
-	}
-
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -45,7 +37,17 @@ public class Webdata {
 	private Booking bookingWebdata;
 	
 
+	
+	public Booking getBookingWebdata() {
+		return bookingWebdata;
+	}
 
+
+	public void setBookingWebdata(Booking bookingWebdata) {
+		this.bookingWebdata = bookingWebdata;
+	}
+
+	
 
 	public int getId() {
 		return id;
@@ -119,8 +121,12 @@ public class Webdata {
 	@Override
 	public String toString() {
 		return "Webdata [id=" + id + ", type=" + type + ", departureTime=" + departureTime + ", departureDate="
-				+ departureDate + ", destination=" + destination + ", availableSeats=" + availableSeats + "]";
+				+ departureDate + ", destination=" + destination + ", bookingWebdata=" + bookingWebdata
+				+ ", availableSeats=" + availableSeats + "]";
 	}
+
+
+
 
 
 
