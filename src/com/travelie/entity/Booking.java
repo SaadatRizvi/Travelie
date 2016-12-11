@@ -53,7 +53,27 @@ public class Booking {
 	//Ticket.java   reference
 	 @OneToMany(mappedBy="booking",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	 private Set<Ticket> tickets;
+	 
+	 
+	//Webdata.java   reference
+		 @OneToMany(mappedBy="bookingWebdata",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+		    private Set<Webdata> webdata;
 	
+		 
+		 
+		 
+	public Set<Webdata> getWebdata() {
+			return webdata;
+		}
+
+
+
+		public void setWebdata(Set<Webdata> webdata) {
+			this.webdata = webdata;
+		}
+
+
+
 	public Set<Ticket> getTickets() {
 		return tickets;
 	}

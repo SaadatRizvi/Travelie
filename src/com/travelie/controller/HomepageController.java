@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.travelie.entity.Booking;
 import com.travelie.entity.Customer;
@@ -42,7 +43,7 @@ import com.travelie.service.WebdataService;
 @Controller
 @RequestMapping(value = "/")
 @SessionAttributes(value = { "destinationList", "newWebdata",
-"customer","loginDetails" })
+"customer","loginDetails","booking" })
 public class HomepageController {
 	private static Logger logger = Logger
 			.getLogger(HomepageController.class);
@@ -79,11 +80,17 @@ public class HomepageController {
 	
 	@RequestMapping("/homepage")
 	public String showHomepage(@ModelAttribute(value = "newWebdata") Webdata webdata,Model model){
-List<Webdata> webdatas = webdataService.getWebdatas();
 		
+		List<Webdata> webdatas = webdataService.getWebdatas();
+		
+			ArrayList<Integer> webdatasID = new ArrayList<Integer>();
+			
+			for (Webdata temp: webdatas){
+				webdatasID.add(temp.getBookingWebdata().getId());
+			}
 			
 
-
+			model.addAttribute("webdatasID", webdatasID);
 		model.addAttribute("webdatas", webdatas);
 		
 		logger.info("newWebdata: id: "+ webdata.getId());
@@ -186,7 +193,7 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 	
 	
 	@GetMapping(value="addNewBooking")
-	public String addNewBooking(@ModelAttribute(value = "newWebdata") Webdata webdata){
+	public String addNewBooking(@ModelAttribute(value = "newWebdata") Webdata webdata, SessionStatus sessionStatus){
 		
 		Booking newBooking = new Booking();
 		
@@ -238,11 +245,14 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 		newBooking.setArrivalTime("unknown");
 		newBooking.setExpectedPrice(5000);
 		
+		int availableSeats =newBooking.getVan().getTotalSeats()-newBooking.getRegisteredSeats();
+		webdata.setBookingWebdata(newBooking);
+		webdata.setAvailableSeats(availableSeats);
 		
 		//bookingService.saveDestination(theDestination);
 		bookingService.saveBooking(newBooking);
 		webdataService.saveWebdata(webdata);
-		
+		sessionStatus.setComplete();
 		return "redirect:/homepage";
 		
 		}
@@ -285,6 +295,16 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 		webdata.setType("Type");
 		logger.info("getNewWebdata() method: Returning a new instance of Webdata");
 		return webdata;
+	}
+	
+	
+	// used for getting booking information to select booking from the homepage
+	@ModelAttribute(value = "booking")
+	public Booking getNewBooking() {
+		Booking booking = new Booking();
+		
+		logger.info("getNewBooking() method: Returning a new instance of Booking");
+		return booking;
 	}
 	
 	

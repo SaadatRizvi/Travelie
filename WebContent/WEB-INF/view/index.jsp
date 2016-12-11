@@ -178,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </tr>
                    </thead>
                  <tbody>
-             
+            
                   <c:forEach var="tempCustomer" items="${webdatas}">
                  <tr>
                       <td>${tempCustomer.type}</td>
@@ -186,7 +186,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <td>${tempCustomer.departureDate}</td>
                       <td>${tempCustomer.destination}</td>
                       <td>${tempCustomer.availableSeats}</td>
-                      <td><input type="radio" name="Van" value="Van"></td>
+                     <td> <a href="/Travelie-main/homepage?bId=${tempCustomer.bookingWebdata.id}"> <button type="button" class="btn btn-success">Select</button> </a></td>
+                     
+                      
+                 <!--     <td><input type="radio" name="Van" value="Van"></td>  --> 
                    </tr>
                  
                   </c:forEach>
@@ -196,10 +199,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div class="col-md-8 about-grid">  </div>
             <div class="col-md-1 about-grid">  </div>
             <div class="col-md-3 about-grid"> 
-				<form action="http://google.com">
-                    <input type="submit" value="Submit request" />
-                   
-                </form>
+				
+                 
 			</div>
                 
             </div>

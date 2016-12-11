@@ -102,8 +102,8 @@
     
       
       <div class="button-container">
-      
-        <input type="submit" value="Save"  />
+       <button><span>Go</span></button>
+   <!--      <input type="submit" value="Save"  /> --> 
       </div>
     
     </form:form>
