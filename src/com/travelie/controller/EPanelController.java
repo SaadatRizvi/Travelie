@@ -2,6 +2,7 @@ package com.travelie.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,11 @@ import com.travelie.service.AdminLoginService;
 @Controller
 @RequestMapping(value = "/epanel")
 public class EPanelController {
+	
+	
+	private static Logger logger = Logger
+			.getLogger(EPanelController.class);
+	
 	
 	@Autowired
 	AdminLoginService adminLoginService;
@@ -45,9 +51,11 @@ public String authenticate(@ModelAttribute("adminLogin") AdminLogin theAdminLogi
 		
 		for (AdminLogin adminLoginTemp : adminLogins){
 			if ( theAdminLogin.getUserName().equals(adminLoginTemp.getUserName()) ){
-				//if ( theAdminLogin.getPassword().equals("1234") ){
+				//logger.info("theAdminLogin.getUserName(): " + theAdminLogin.getUserName());
+				//logger.info("theAdminLogin.getPassword(): " + theAdminLogin.getPassword());
+				if ( theAdminLogin.getPassword().equals("1234") ){
 					isValidAuthentication = true;break;
-				//}
+				}
 			}
 		}
 		

@@ -58,7 +58,7 @@ public class AdminLogin {
 	}
 
 
-	public void setOassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
