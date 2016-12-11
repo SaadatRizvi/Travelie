@@ -47,7 +47,7 @@ public String login(Model theModel){
 	
 	theModel.addAttribute("adminLogin", theAdminLogin);
 	
-	return "admin-login";
+	return "epanel-login";
 	
 }
 
@@ -77,7 +77,7 @@ public String authenticate(@ModelAttribute("adminLogin") AdminLogin theAdminLogi
 		if (errors){
 			theAdminLogin.setUserName("Incorrect Username / Password");
 			theAdminLogin.setPassword("");
-			return "admin-login";
+			return "epanel-login";
 		}
 	
 	
