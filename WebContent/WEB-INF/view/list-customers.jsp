@@ -31,6 +31,7 @@
 			
 			<table>
 			   <tr>
+			   		<th>Customer ID</th>
 			   		<th>Registration Number</th>
 			   		<th>First Name</th>
 			   		<th>Last Name</th>
@@ -57,7 +58,8 @@
 			   
 			   </c:url>
 			   
-				 <tr>
+				 <tr>	
+					<td> ${tempCustomer.id} </td>
 				 	<td> ${tempCustomer.regNumber} </td>
 				 	<td> ${tempCustomer.firstName} </td>
 				 	<td> ${tempCustomer.lastName} </td>
