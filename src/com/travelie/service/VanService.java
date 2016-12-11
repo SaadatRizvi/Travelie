@@ -14,6 +14,8 @@ public interface VanService {
 	public Van getVan(int theId);
 
 	public void deleteVan(int theId);
+	
+	public List<Van> getAvailableVans();
 
 
 	

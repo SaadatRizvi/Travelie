@@ -3,6 +3,7 @@ package com.travelie.service;
 import java.util.List;
 
 import com.travelie.entity.Driver;
+import com.travelie.entity.Van;
 
 public interface DriverService {
 
@@ -15,6 +16,7 @@ public interface DriverService {
 
 	public void deleteDriver(int theId);
 
+	public List<Driver> getAvailableDrivers();
 
 	
 }

@@ -34,6 +34,8 @@
 			   		<th>Registration Number</th>
 			   		<th>First Name</th>
 			   		<th>Last Name</th>
+			   		<th>Username</th>
+			   		<th>Password</th>
 			   		<th>Email</th>
 			   		<th>Phone Number</th>
 			   		<th>Flagged</th>
@@ -58,7 +60,9 @@
 				 <tr>
 				 	<td> ${tempCustomer.regNumber} </td>
 				 	<td> ${tempCustomer.firstName} </td>
-				 	<td> ${tempCustomer.lastName} </td>	
+				 	<td> ${tempCustomer.lastName} </td>
+				 	<td> ${tempCustomer.username} </td>	
+				 	<td> ${tempCustomer.password} </td>		
 					<td> ${tempCustomer.email} </td>
 					<td> ${tempCustomer.phoneNumber} </td>
 					<td> ${tempCustomer.flagged} </td>

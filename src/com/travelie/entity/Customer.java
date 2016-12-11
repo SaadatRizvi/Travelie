@@ -30,6 +30,12 @@ public class Customer {
 	@Column(name="email")
 	private String email;
 	
+	@Column(name="username")
+	private String username;
+	
+	@Column(name="password")
+	private String password;
+	
 	@Column(name="regnumber")
 	private int regNumber;
 	
@@ -61,6 +67,26 @@ public class Customer {
 
 	public Customer(){
 		
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
