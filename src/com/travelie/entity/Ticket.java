@@ -20,11 +20,11 @@ public class Ticket {
 	
 	@ManyToOne
 	@JoinColumn(name="bookings_id")
-	private Van booking;
+	private Booking booking;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
-	private Driver customer;
+	private Customer customer;
 	
 	@Column(name="seat_no")
 	private int seatNumber;
@@ -49,25 +49,25 @@ public class Ticket {
 
 
 
-	public Van getBooking() {
+	public Booking getBooking() {
 		return booking;
 	}
 
 
 
-	public void setBooking(Van booking) {
+	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
 
 
 
-	public Driver getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
 
 
-	public void setCustomer(Driver customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 

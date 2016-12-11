@@ -2,6 +2,7 @@ package com.travelie.service;
 
 import java.util.List;
 
+import com.travelie.entity.Customer;
 import com.travelie.entity.Ticket;
 
 public interface TicketService {
@@ -14,6 +15,8 @@ public interface TicketService {
 	public Ticket getTicket(int theId);
 
 	public void deleteTicket(int theId);
+	
+	public List<Customer> getCustomersBooking(int bId); 
 
 
 	

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -56,19 +57,22 @@ public class Booking {
 	 
 	 
 	//Webdata.java   reference
-		 @OneToMany(mappedBy="bookingWebdata",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-		    private Set<Webdata> webdata;
+		 @OneToOne(mappedBy="bookingWebdata",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+		    private Webdata webdata;
 	
 		 
 		 
-		 
-	public Set<Webdata> getWebdata() {
+	
+
+
+
+	public Webdata getWebdata() {
 			return webdata;
 		}
 
 
 
-		public void setWebdata(Set<Webdata> webdata) {
+		public void setWebdata(Webdata webdata) {
 			this.webdata = webdata;
 		}
 

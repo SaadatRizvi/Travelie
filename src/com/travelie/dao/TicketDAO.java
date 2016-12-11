@@ -2,6 +2,7 @@ package com.travelie.dao;
 
 import java.util.List;
 
+import com.travelie.entity.Customer;
 import com.travelie.entity.Ticket;
 
 public interface TicketDAO {
@@ -13,5 +14,7 @@ public interface TicketDAO {
 	public Ticket getTicket(int theId);
 
 	public void deleteTicket(int theId);
+	
+	public List<Customer>  getCustomersBooking(int bId);
 	
 }

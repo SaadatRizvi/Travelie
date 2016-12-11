@@ -119,8 +119,12 @@ public class Webdata {
 	@Override
 	public String toString() {
 		return "Webdata [id=" + id + ", type=" + type + ", departureTime=" + departureTime + ", departureDate="
-				+ departureDate + ", destination=" + destination + ", availableSeats=" + availableSeats + "]";
+				+ departureDate + ", destination=" + destination + ", bookingWebdata=" + bookingWebdata
+				+ ", availableSeats=" + availableSeats + "]";
 	}
+
+
+
 
 
 

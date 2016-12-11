@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -35,6 +37,7 @@ import com.travelie.service.CustomerService;
 import com.travelie.service.DestinationService;
 import com.travelie.service.DriverService;
 import com.travelie.service.RouteService;
+import com.travelie.service.TicketService;
 import com.travelie.service.VanService;
 import com.travelie.service.VanTypeService;
 import com.travelie.service.WebdataService;
@@ -52,6 +55,9 @@ public class HomepageController {
 	
 	@Autowired
 	VanTypeService vanTypeService;
+	
+	@Autowired
+	TicketService ticketService;
 	
 	@Autowired
 	DestinationService destinationService;
@@ -77,6 +83,7 @@ public class HomepageController {
 	
 	boolean loggedin = false;
 
+	boolean newWebDataSubmit = false;
 	
 	@RequestMapping("homepage")
 	public String showHomepage(@ModelAttribute(value = "newWebdata") Webdata webdata,Model model){
@@ -107,6 +114,51 @@ public class HomepageController {
 	}
 	
 	
+	
+	@GetMapping(value="/homepage", params="bId")
+	public String  setWebDataDetails(@RequestParam(value = "bId") int id, @ModelAttribute(value = "newWebdata") Webdata webdata,
+			Model model, @ModelAttribute(value = "customer") Customer customer,
+			@ModelAttribute(value = "loginDetails")LoginDetails loginDetails){
+		
+		
+		logger.info("bId ="+id);
+		
+		
+		Booking booking = bookingService.getBooking(id);
+		
+		webdata =  booking.getWebdata();
+		 logger.info("webdata: "+webdata);
+		 
+		 model.addAttribute("newWebdata", webdata);
+		
+		/* Webdata webdata2 = booking.getWebdata();
+		 logger.info("bId ="+id);
+		 webdata.setId(webdata2.getId());
+		*/
+	/*	
+		webdata.setBookingWebdata(booking);
+		
+		webdata.setType(booking.getVan().getCategory().getType());
+		webdata.setDepartureDate(booking.getDepartureDate());
+		webdata.setDepartureTime(booking.getDepartureTime());
+		webdata.setDestination(booking.getRoute().getDestination().getLocation());
+		*/
+		
+		
+		if (!loggedin){
+			model.addAttribute("customer", customer);
+			model.addAttribute("loginDetails", loginDetails);
+			
+			 return "login-form";
+		}
+		
+		
+		return "redirect:/registerCustomerBooking";
+	}
+	
+	
+	
+	
 	@PostMapping(value = "/homepage", params = "tAction=create")
 	public String verifyWebData(@ModelAttribute(value = "newWebdata") Webdata webdata,
 			Model model, @ModelAttribute(value = "customer") Customer customer,
@@ -123,20 +175,13 @@ public class HomepageController {
 		if (type.equals("Type") || time.equals("") || date.equals("")) return "redirect:/homepage";
 		if(destination.equals("Destination")) return "redirect:/homepage";
 		
-		
+		newWebDataSubmit = true;
 		if (!loggedin){
 			model.addAttribute("customer", customer);
 			model.addAttribute("loginDetails", loginDetails);
 			
 			 return "login-form";
 		}
-		
-		webdataService.saveWebdata(webdata);
-		
-		
-		
-		
-		
 		
 		
 		return "redirect:/addNewBooking";
@@ -185,8 +230,43 @@ public class HomepageController {
 			return "login-form";
 		}
 		
+		if(newWebDataSubmit){
 		return "redirect:/addNewBooking";
+		}
 		
+		return "redirect:/registerCustomerBooking";
+		
+		
+	}
+	
+	
+	@GetMapping(value="registerCustomerBooking")
+	public String registerCustomerBooking(@ModelAttribute(value = "newWebdata") Webdata webdata, SessionStatus sessionStatus){
+		
+		logger.info("registerCustomerBooking(): S1");
+		logger.info("registerCustomerBooking()  webdata:" + webdata);
+		int id =webdata.getBookingWebdata().getId();
+		logger.info("registerCustomerBooking()  id:" + id);
+		
+	//	List<Customer> customers = ticketService.getCustomersBooking(id);
+		logger.info("registerCustomerBooking(): S2");
+		Booking booking = webdata.getBookingWebdata();
+		
+		int i = booking.getRegisteredSeats();
+		i++;
+		booking.setRegisteredSeats(i);
+		
+		
+		int availableSeats =booking.getVan().getTotalSeats()-booking.getRegisteredSeats();
+		
+		webdata.setAvailableSeats(availableSeats);
+		
+		//bookingService.saveDestination(theDestination);
+		bookingService.saveBooking(booking);
+		webdataService.saveWebdata(webdata);
+		sessionStatus.setComplete();
+		newWebDataSubmit = false;
+		return "redirect:/homepage";
 	}
 	
 	
@@ -253,6 +333,7 @@ public class HomepageController {
 		bookingService.saveBooking(newBooking);
 		webdataService.saveWebdata(webdata);
 		sessionStatus.setComplete();
+		newWebDataSubmit = false;
 		return "redirect:/homepage";
 		
 		}
@@ -304,6 +385,7 @@ public class HomepageController {
 		Booking booking = new Booking();
 		
 		logger.info("getNewBooking() method: Returning a new instance of Booking");
+		
 		return booking;
 	}
 	
