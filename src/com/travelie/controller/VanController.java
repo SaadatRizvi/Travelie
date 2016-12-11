@@ -103,9 +103,9 @@ public String saveVan(@ModelAttribute("van") Van theVan){
 		
 		boolean isValidCategory = false;
 		
-		for (VanType vanType : vanTypes){
-			if (vanType.getType().equals(theVan.getVanTypeCategory()) ) {
-				theVan.setCategory(vanType);
+		for (VanType vanTypeTemp : vanTypes){
+			if (vanTypeTemp.getType().equals(theVan.getVanTypeCategory()) ) {
+				theVan.setCategory(vanTypeTemp);
 				isValidCategory = true;break;}
 				
 		}
