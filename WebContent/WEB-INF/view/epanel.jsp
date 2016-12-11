@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>E-Panel</title>
+  <title>Travelie EPanel</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style_epanel.css">
   
   
