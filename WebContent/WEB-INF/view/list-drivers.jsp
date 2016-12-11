@@ -83,6 +83,10 @@
 			
 			
 			</div>
+			
+			<p>
+			<a href="${pageContext.request.contextPath}/epanel/control">Back to EPanel</a>
+			</p>
 		
 		</div>
 
