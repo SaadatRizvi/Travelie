@@ -65,7 +65,7 @@ public String authenticate(@ModelAttribute("adminLogin") AdminLogin theAdminLogi
 			if ( theAdminLogin.getUserName().equals(adminLoginTemp.getUserName()) ){
 				//logger.info("theAdminLogin.getUserName(): " + theAdminLogin.getUserName());
 				//logger.info("theAdminLogin.getPassword(): " + theAdminLogin.getPassword());
-				if ( theAdminLogin.getPassword().equals("1234") ){
+				if ( theAdminLogin.getPassword().equals(adminLoginTemp.getPassword()) ){
 					isValidAuthentication = true;break;
 				}
 			}
@@ -75,7 +75,9 @@ public String authenticate(@ModelAttribute("adminLogin") AdminLogin theAdminLogi
 			errors = true;
 		}
 		if (errors){
-			return "redirect:/epanel/login";
+			theAdminLogin.setUserName("Incorrect Username / Password");
+			theAdminLogin.setPassword("");
+			return "admin-login";
 		}
 	
 	
