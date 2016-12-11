@@ -31,6 +31,7 @@
 			
 			<table>
 			   <tr>
+			   		<th>Booking ID</th>
 			   		<th>Van ID</th>
 			   		<th>Driver ID</th>
 			   		<th>Route ID</th>
@@ -58,6 +59,7 @@
 			   </c:url>
 			   
 				 <tr>
+				 	<td> ${tempBooking.id} </td>
 				 	<td> ${tempBooking.van.id} </td>
 				 	<td> ${tempBooking.driver.id} </td>
 				 	<td> ${tempBooking.route.id} </td>	
