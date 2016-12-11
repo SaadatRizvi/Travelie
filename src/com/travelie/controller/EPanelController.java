@@ -28,6 +28,18 @@ public class EPanelController {
 	@Autowired
 	AdminLoginService adminLoginService;
 	
+@GetMapping("")
+public String start(Model theModel){
+	
+	AdminLogin theAdminLogin = new AdminLogin();
+	
+	theModel.addAttribute("adminLogin", theAdminLogin);
+	
+	return "redirect:/epanel/login";
+	
+}
+	
+
 @GetMapping("/login")
 public String login(Model theModel){
 	
