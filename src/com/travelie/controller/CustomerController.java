@@ -81,7 +81,6 @@ public String saveCustomer(@ModelAttribute("customer") Customer theCustomer){
 		// Check for Phone Number
 		isValidRegistration = true;
 		
-		if (!isUpdate){
 		for (Customer customerTemp : customers){
 			
 			if ( !( isUpdate && theCustomer.getId() == customerTemp.getId() ) ){
@@ -90,7 +89,6 @@ public String saveCustomer(@ModelAttribute("customer") Customer theCustomer){
 				}
 			}
 			
-		}
 		}
 		
 		if (!isValidRegistration || theCustomer.getPhoneNumber() < 1){
