@@ -20,6 +20,7 @@ import com.travelie.service.DestinationService;
 @RequestMapping(value = "/destination")
 public class DestinationController {
 	
+	boolean isUpdate = false;
 	
 	@Autowired
 	DestinationService destinationService;
@@ -37,6 +38,8 @@ public String listDestinations(Model model){
 
 @GetMapping("/showFormForAdd")
 public String showFormForAdd(Model theModel){
+	
+	isUpdate = false;
 	
 	Destination theDestination = new Destination();
 	
@@ -57,26 +60,37 @@ public String saveDestination(@ModelAttribute("destination") Destination theDest
 
 		boolean isValidRegistration = true;
 		
-		
+		// Check for Destination
 		for (Destination destinationTemp : destinations){
 			
-			if (theDestination.getLocation().equals(destinationTemp.getLocation())){
-				isValidRegistration = false;break;
+			if ( !( isUpdate && theDestination.getId() == destinationTemp.getId() ) ){
+				if (theDestination.getLocation().equals(destinationTemp.getLocation())){
+					isValidRegistration = false;break;
+				}
 			}
-			
 		}
-		
+		if ( theDestination.getLocation().equals("Please enter a Unique Destination") || theDestination.getLocation().equals("Please enter a Valid Destination") ){
+			theDestination.setLocation("Please enter a Valid Destination");
+			
+			errors = true;
+		}
 		if (!isValidRegistration){
 			theDestination.setLocation("Please enter a Unique Destination");
 		
-						errors = true;
+			errors = true;
+		}
+		
+		// Empty Field Checks
+		//Destination
+		if ( theDestination.getLocation().equals("") || theDestination.getLocation().equals("Please Enter Valid Destination") ){
+			theDestination.setLocation("Please Enter Valid Destination");
+			errors = true;
 		}
 					
 			
-			if (errors){
-				
-				return "destination-form";
-			}
+		if (errors){
+			return "destination-form";
+		}
 	
 	destinationService.saveDestination(theDestination);
 	
@@ -87,6 +101,8 @@ public String saveDestination(@ModelAttribute("destination") Destination theDest
 
 @GetMapping("/showFormForUpdate")
 public String showFormForUpdate (@RequestParam("destinationId") int theId, Model theModel){
+	
+	isUpdate = true;
 	
 	Destination theDestination = destinationService.getDestination(theId);
 	
