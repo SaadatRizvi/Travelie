@@ -155,6 +155,17 @@ public class Route {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	
+
+	public String getDestination_location() {
+		return destination_location;
+	}
+
+
+	public void setDestination_location(String destination_location) {
+		this.destination_location = destination_location;
+	}
 
 	
 }
