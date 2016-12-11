@@ -22,6 +22,17 @@ public class TicketController {
 	@Autowired
 	TicketService ticketService;
 	
+@GetMapping("")
+public String listTicketsRoute(Model model){
+	
+	List<Ticket> tickets = ticketService.getTickets();
+	
+	model.addAttribute("tickets", tickets);
+	
+	return "redirect:/ticket/list";
+	
+}
+	
 @GetMapping("/list")
 public String listTickets(Model model){
 	

@@ -30,6 +30,21 @@ public class RouteController {
 	@Autowired
 	DestinationService destinationService;
 	
+@GetMapping("")
+public String listRoutesRoot(Model model){
+	
+	List<Route> routes = routeService.getRoutes();
+	
+	for (Route route : routes){
+		route.setDestination_location(route.getDestination().getLocation());
+	}
+	
+	model.addAttribute("routes", routes);
+	
+	return "redirect:/route/list";
+	
+}
+	
 @GetMapping("/list")
 public String listRoutes(Model model){
 	

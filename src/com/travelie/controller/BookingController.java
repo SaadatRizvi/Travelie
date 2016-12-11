@@ -22,6 +22,17 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 	
+@GetMapping("")
+public String listBookingsRoot(Model model){
+	
+	List<Booking> bookings = bookingService.getBookings();
+	
+	model.addAttribute("bookings", bookings);
+	
+	return "redirect:/booking/list";
+	
+}
+	
 @GetMapping("/list")
 public String listBookings(Model model){
 	

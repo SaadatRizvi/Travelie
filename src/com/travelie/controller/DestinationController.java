@@ -25,6 +25,17 @@ public class DestinationController {
 	@Autowired
 	DestinationService destinationService;
 	
+@GetMapping("")
+public String listDestinationsRoot(Model model){
+	
+	List<Destination> destinations = destinationService.getDestinations();
+	
+	model.addAttribute("destinations", destinations);
+	
+	return "redirect:/destination/list";
+	
+}
+	
 @GetMapping("/list")
 public String listDestinations(Model model){
 	

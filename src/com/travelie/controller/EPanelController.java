@@ -29,7 +29,7 @@ public class EPanelController {
 	AdminLoginService adminLoginService;
 	
 @GetMapping("")
-public String start(Model theModel){
+public String loginRoot(Model theModel){
 	
 	AdminLogin theAdminLogin = new AdminLogin();
 	

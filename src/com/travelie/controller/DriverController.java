@@ -25,6 +25,17 @@ public class DriverController {
 	@Autowired
 	DriverService driverService;
 	
+@GetMapping("")
+public String listDriversRoot(Model model){
+	
+	List<Driver> drivers = driverService.getDrivers();
+	
+	model.addAttribute("drivers", drivers);
+	
+	return "redirect:/driver/list";
+	
+}
+	
 @GetMapping("/list")
 public String listDrivers(Model model){
 	

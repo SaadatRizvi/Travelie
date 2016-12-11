@@ -34,6 +34,24 @@ public class VanController {
 	VanTypeService vanTypeService;
 	
 	
+@GetMapping("")
+public String listVansRoot(Model model){
+	
+	List<Van> vans = vanService.getVans();
+	
+for (Van van : vans){
+		
+	
+		van.setVanTypeCategory(van.getCategory().getType());
+	}
+	
+	model.addAttribute("vans", vans);
+	
+	return "redirect:/van/list";
+	
+}
+	
+	
 @GetMapping("/list")
 public String listVans(Model model){
 	

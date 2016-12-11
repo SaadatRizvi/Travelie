@@ -24,6 +24,17 @@ public class VanTypeController {
 	@Autowired
 	VanTypeService vanTypeService;
 	
+@GetMapping("")
+public String listVanTypesRoot(Model model){
+	
+	List<VanType> vanTypes = vanTypeService.getVanTypes();
+	
+	model.addAttribute("vanTypes", vanTypes);
+	
+	return "redirect:/vanType/list";
+	
+}
+	
 @GetMapping("/list")
 public String listVanTypes(Model model){
 	

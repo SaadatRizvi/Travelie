@@ -24,6 +24,17 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 	
+@GetMapping("")
+public String listCustomersRoot(Model model){
+	
+	List<Customer> customers = customerService.getCustomers();
+	
+	model.addAttribute("customers", customers);
+	
+	return "redirect:/customer/list";
+	
+}
+	
 @GetMapping("/list")
 public String listCustomers(Model model){
 	
