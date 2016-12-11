@@ -5,11 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="webdata")
 public class Webdata {
+
+	public Booking getBookingWebdata() {
+		return bookingWebdata;
+	}
+
+
+	public void setBookingWebdata(Booking bookingWebdata) {
+		this.bookingWebdata = bookingWebdata;
+	}
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,6 +40,13 @@ public class Webdata {
 	@Column(name="destination")
 	private String destination;
 	
+	@ManyToOne
+	@JoinColumn(name="booking_id")
+	private Booking bookingWebdata;
+	
+
+
+
 	public int getId() {
 		return id;
 	}
