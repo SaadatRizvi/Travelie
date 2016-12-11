@@ -37,6 +37,14 @@ public class Ticket {
 
 
 
+	@Override
+	public String toString() {
+		return "Ticket [id=" + id + ", booking=" + booking + ", customer=" + customer + ", seatNumber=" + seatNumber
+				+ "]";
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

@@ -202,6 +202,10 @@ public class Booking {
 		this.expectedPrice = expectedPrice;
 	}
 
+
+
+
+
 	
 	
 }
