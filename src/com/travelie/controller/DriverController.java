@@ -20,6 +20,7 @@ import com.travelie.service.DriverService;
 @RequestMapping(value = "/driver")
 public class DriverController {
 	
+	boolean isUpdate = false;
 	
 	@Autowired
 	DriverService driverService;
@@ -38,6 +39,8 @@ public String listDrivers(Model model){
 @GetMapping("/showFormForAdd")
 public String showFormForAdd(Model theModel){
 	
+	isUpdate = false;
+	
 	Driver theDriver = new Driver();
 	
 	theModel.addAttribute("driver", theDriver);
@@ -54,62 +57,126 @@ public String saveDriver(@ModelAttribute("driver") Driver theDriver){
 
 
 	 List<Driver> drivers = driverService.getDrivers();
-
+	 	
+	 	
+	 	// Check for CNIC 
 		boolean isValidRegistration = true;
-		
-		
+		 
 		for (Driver driverTemp : drivers){
 			
-			if (theDriver.getCnic().equals(driverTemp.getCnic())){
-				isValidRegistration = false;break;
+			if ( !( isUpdate && theDriver.getId() == driverTemp.getId() ) ){
+				if (theDriver.getCnic().equals(driverTemp.getCnic())){
+					isValidRegistration = false;break;
+				}
 			}
-			
 		}
-		
+		if ( theDriver.getCnic().equals("Please enter a Unique CNIC") || theDriver.getCnic().equals("Please enter a Valid CNIC") ){
+			theDriver.setCnic("Please enter a Valid CNIC");
+			
+			errors = true;
+		}
 		if (!isValidRegistration){
 			theDriver.setCnic("Please enter a Unique CNIC");
 		
-						errors = true;
+			errors = true;
 		}
 		
 		
+		// Check for License Number 
 		isValidRegistration = true;
 		
 		for (Driver driverTemp : drivers){
 			
-			if (theDriver.getLicenseNumber().equals(driverTemp.getLicenseNumber())){
-				isValidRegistration = false;break;
+			if ( !( isUpdate && theDriver.getId() == driverTemp.getId() ) ){
+				if (theDriver.getLicenseNumber().equals(driverTemp.getLicenseNumber())){
+					isValidRegistration = false;break;
+				}
 			}
-			
 		}
-		
+		if ( theDriver.getLicenseNumber().equals("Please enter a Unique License#") || theDriver.getLicenseNumber().equals("Please enter a Valid License#") ){
+			theDriver.setLicenseNumber("Please enter a Valid License#");
+			
+			errors = true;
+		}
 		if (!isValidRegistration){
 			theDriver.setLicenseNumber("Please enter a Unique License#");
 		
-						errors = true;
+			errors = true;
 		}
 		
 		
+		// Check for Phone Number 
 		isValidRegistration = true;
 		
 		for (Driver driverTemp : drivers){
 			
-			if (theDriver.getPhoneNumber() == driverTemp.getPhoneNumber() ){
-				isValidRegistration = false;break;
+			if ( !( isUpdate && theDriver.getId() == driverTemp.getId() ) ){
+				if (theDriver.getPhoneNumber() == driverTemp.getPhoneNumber() ){
+					isValidRegistration = false;break;
+				}
 			}
-			
+		}
+		if (!isValidRegistration || theDriver.getPhoneNumber() < 1){
+			theDriver.setPhoneNumber(-1);
+		
+			errors = true;
 		}
 		
+		
+		// Check for Picture 
+		isValidRegistration = true;
+		
+		for (Driver driverTemp : drivers){
+			
+			if ( !( isUpdate && theDriver.getId() == driverTemp.getId() ) ){
+				if (theDriver.getPicture().equals(driverTemp.getPicture())){
+					isValidRegistration = false;break;
+				}
+			}
+		}
+		if ( theDriver.getPicture().equals("Please enter a Unique Picture Location") || theDriver.getPicture().equals("Please enter a Valid Picture Location") ){
+			theDriver.setPicture("Please enter a Valid Picture Location");
+			
+			errors = true;
+		}
 		if (!isValidRegistration){
-			theDriver.setPhoneNumber(999999999);
+			theDriver.setPicture("Please enter a Unique Picture Location");
 		
-						errors = true;
+			errors = true;
 		}
+		
+		// Empty Field Checks
+		//First Name
+		if ( theDriver.getFirstName().equals("") || theDriver.getFirstName().equals("Please Enter Valid First Name") ){
+			theDriver.setFirstName("Please Enter Valid First Name");
+			errors = true;
+		}
+		//Last Name
+		if ( theDriver.getLastName().equals("") || theDriver.getLastName().equals("Please Enter Valid Last Name") ){
+			theDriver.setLastName("Please Enter Valid Last Name");
+			errors = true;
+		}
+		//CNIC
+		if ( theDriver.getCnic().equals("") || theDriver.getCnic().equals("Please Enter Valid CNIC") ){
+			theDriver.setCnic("Please Enter Valid CNIC");
+			errors = true;
+		}
+		//License Number
+		if ( theDriver.getLicenseNumber().equals("") || theDriver.getLicenseNumber().equals("Please enter a Valid License#") ){
+			theDriver.setLicenseNumber("Please enter a Valid License#");
+			errors = true;
+		}
+		//Picture
+		if ( theDriver.getPicture().equals("") || theDriver.getPicture().equals("Please enter a Valid Picture Location") ){
+			theDriver.setPicture("Please enter a Valid Picture Location");
+			errors = true;
+		}
+		
 			
-			if (errors){
+		if (errors){
 				
-				return "driver-form";
-			}
+			return "driver-form";
+		}
 	
 	driverService.saveDriver(theDriver);
 	
@@ -120,6 +187,8 @@ public String saveDriver(@ModelAttribute("driver") Driver theDriver){
 
 @GetMapping("/showFormForUpdate")
 public String showFormForUpdate (@RequestParam("driverId") int theId, Model theModel){
+	
+	isUpdate = true;
 	
 	Driver theDriver = driverService.getDriver(theId);
 	
