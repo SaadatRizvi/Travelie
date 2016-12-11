@@ -460,7 +460,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</div>
 							<h4>Raheel Jameel</h4>
-							<p>Liaison Head</p>
+							<p>Majority Shareholder</p>
 						</div>
 						<div class="clearfix"></div>		
 					</div>
