@@ -19,6 +19,7 @@ import com.travelie.service.VanTypeService;
 @RequestMapping(value = "/vanType")
 public class VanTypeController {
 	
+	boolean isUpdate = false;
 	
 	@Autowired
 	VanTypeService vanTypeService;
@@ -37,6 +38,8 @@ public String listVanTypes(Model model){
 @GetMapping("/showFormForAdd")
 public String showFormForAdd(Model theModel){
 	
+	isUpdate = false;
+	
 	VanType theVanType = new VanType();
 	
 	theModel.addAttribute("vanType", theVanType);
@@ -54,28 +57,42 @@ public String saveVanType(@ModelAttribute("vanType") VanType theVanType){
 
 	 List<VanType> vanTypes = vanTypeService.getVanTypes();
 
-		boolean isValidRegistration = true;
 		
+	 	// Check for Van Type
+	 	boolean isValidRegistration = true;
 		
 		for (VanType vanTypeTemp : vanTypes){
 			
-			if (theVanType.getType().equals(vanTypeTemp.getType())){
-				isValidRegistration = false;break;
+			if ( !( isUpdate && theVanType.getId() == vanTypeTemp.getId() ) ){
+				if ( theVanType.getType().equals(vanTypeTemp.getType()) ){
+					isValidRegistration = false;break;
+				}
 			}
 			
 		}
-		
+		if ( theVanType.getType().equals("Please enter a Unique Van Type") || theVanType.getType().equals("Please enter a Valid Van Type") ){
+			theVanType.setType("Please enter a Valid Van Type");
+			
+			errors = true;
+		}
 		if (!isValidRegistration){
-			theVanType.setType("Please enter a Unique Type");
+			theVanType.setType("Please enter a Unique Van Type");
 		
-						errors = true;
+			errors = true;
 		}
-					
+		
+		// Empty Field Checks
+		//Van Type
+		if ( theVanType.getType().equals("") || theVanType.getType().equals("Please enter a Valid Van Type") ){
+			theVanType.setType("Please enter a Valid Van Type");
+			errors = true;
+		}
+		
+		
+		if (errors){
 			
-			if (errors){
-				
-				return "vanType-form";
-			}
+			return "vanType-form";
+		}
 	
 	vanTypeService.saveVanType(theVanType);
 	
@@ -86,6 +103,8 @@ public String saveVanType(@ModelAttribute("vanType") VanType theVanType){
 
 @GetMapping("/showFormForUpdate")
 public String showFormForUpdate (@RequestParam("vanTypeId") int theId, Model theModel){
+	
+	isUpdate = true;
 	
 	VanType theVanType = vanTypeService.getVanType(theId);
 	
