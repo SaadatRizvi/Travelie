@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -19,20 +20,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.travelie.entity.Booking;
 import com.travelie.entity.Customer;
 import com.travelie.entity.Destination;
+import com.travelie.entity.Driver;
 import com.travelie.entity.LoginDetails;
+import com.travelie.entity.Route;
+import com.travelie.entity.Van;
 import com.travelie.entity.VanType;
 import com.travelie.entity.Webdata;
+import com.travelie.service.BookingService;
 import com.travelie.service.CustomerService;
 import com.travelie.service.DestinationService;
+import com.travelie.service.DriverService;
+import com.travelie.service.RouteService;
+import com.travelie.service.VanService;
 import com.travelie.service.VanTypeService;
 import com.travelie.service.WebdataService;
 
 
 @Controller
 @RequestMapping(value = "/")
-@SessionAttributes(value = { "destinationList",
+@SessionAttributes(value = { "destinationList", "newWebdata",
 "customer","loginDetails" })
 public class HomepageController {
 	private static Logger logger = Logger
@@ -48,6 +57,20 @@ public class HomepageController {
 	
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	VanService vanService;  
+	
+	@Autowired
+	DriverService driverService;  
+	
+	@Autowired
+	RouteService routeService;
+	
+	@Autowired
+	BookingService bookingService;
+	
+	
 	
 	
 	
@@ -101,7 +124,7 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 			 return "login-form";
 		}
 		
-	//	webdataService.saveWebdata(webdata);
+		webdataService.saveWebdata(webdata);
 		
 		
 		
@@ -109,13 +132,121 @@ List<Webdata> webdatas = webdataService.getWebdatas();
 		
 		
 		
-		return "login-form";
+		return "redirect:/addNewBooking";
+		
+	}
+	
+	
+	
+	@PostMapping(value = "authenticateUser")
+	public String authenticateUser(@ModelAttribute(value = "loginDetails")LoginDetails loginDetails){
+		
+		
+		boolean validCustomer = false;  // username registered
+		boolean loggedIn = false;   //username and password match
+		String username = loginDetails.getUserName();
+		String password = loginDetails.getPassword();
+		
+		List<Customer> customers = customerService.getCustomers();
+		
+		for (Customer temp: customers){
+			
+			if(username.equals(temp.getUsername())){
+				
+				validCustomer = true;
+				
+				if (password.equals(temp.getPassword())){
+					
+					loggedIn = true;
+				}
+			}
+			
+		}
+		
+		
+		if (!validCustomer){
+			
+			loginDetails.setUserName("incorrect username" );
+			loginDetails.setPassword(null);
+			return "login-form";
+		}
+		
+		if (!loggedIn){
+			
+			loginDetails.setUserName("incorrect password"); 
+			loginDetails.setPassword(null);
+			return "login-form";
+		}
+		
+		return "redirect:/addNewBooking";
 		
 	}
 	
 	
 	
 	
+	@GetMapping(value="addNewBooking")
+	public String addNewBooking(@ModelAttribute(value = "newWebdata") Webdata webdata){
+		
+		Booking newBooking = new Booking();
+		
+		String type = webdata.getType();
+		logger.info("type: "+ type);
+		String departureDate = webdata.getDepartureDate();
+		logger.info("departureDate: "+ departureDate);
+		String departureTime = webdata.getDepartureTime();
+		logger.info("departureTime: "+ departureTime);
+		String destination = webdata.getDestination();
+		logger.info("destination : "+ destination);
+		//logger.info("addNewBooking method(): 1 ");
+		List<Van> availableVans = vanService.getAvailableVans();
+	//	logger.info("addNewBooking method(): 2 ");
+		Random rn = new Random();
+		int iVan = rn.nextInt( availableVans.size());
+		Van van=availableVans.get(iVan);
+		
+		//logger.info("addNewBooking method(): 3 ");
+		newBooking.setVan(van);
+	//	logger.info("addNewBooking method(): 4 ");
+		List<Driver> availableDrivers = driverService.getAvailableDrivers();
+	//	logger.info("addNewBooking method(): 5 ");
+		int iDriver = rn.nextInt( availableDrivers.size());
+		Driver driver=availableDrivers.get(iDriver);
+	//	logger.info("addNewBooking method(): 6 ");
+		newBooking.setDriver(driver);
+		
+		List<Route> routes = routeService.getRoutes();
+		
+		int iRoute = 0;
+		
+		for (Route tempRoute : routes){
+			logger.info("FOR LOOP: "+tempRoute.getId() + " "+tempRoute.getDestination());
+			if (tempRoute.getDestination().getLocation().equals(destination)){
+			
+				iRoute = tempRoute.getId();
+				logger.info("INSIDE IF route ki ID: "+iRoute);
+			}
+		}
+		logger.info("routeID: "+iRoute);
+		newBooking.setRoute(routeService.getRoute(iRoute));
+		
+		newBooking.setRegisteredSeats(1);
+		logger.info("departureDate: "+ departureDate);
+		newBooking.setDepartureDate(departureDate);
+		logger.info("departureTime: "+ departureTime);
+		newBooking.setDepartureTime(departureTime);
+		newBooking.setArrivalTime("unknown");
+		newBooking.setExpectedPrice(5000);
+		
+		
+		//bookingService.saveDestination(theDestination);
+		bookingService.saveBooking(newBooking);
+		webdataService.saveWebdata(webdata);
+		
+		return "redirect:/homepage";
+		
+		}
+		
 	
 	@ModelAttribute(value = "destinationList")
 	public List<String> listDestinations() {

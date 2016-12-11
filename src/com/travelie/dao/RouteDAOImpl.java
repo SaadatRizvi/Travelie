@@ -7,10 +7,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.travelie.entity.Route;
 
 
 @Repository
+@Transactional
 //change Query in every DAO implementation
 public class RouteDAOImpl implements RouteDAO {
 
@@ -26,7 +29,7 @@ public class RouteDAOImpl implements RouteDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		Query<Route> theQuery =
-				currentSession.createQuery("from Route order by regNumber", Route.class);
+				currentSession.createQuery("from Route order by id", Route.class);
 		
 		List<Route> routes = theQuery.getResultList();
 		

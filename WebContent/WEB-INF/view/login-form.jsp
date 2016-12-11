@@ -23,7 +23,7 @@
 <div class="pen-title">
   <h1>Travelie Login Form</h1><span> 
 </div>
-<div class="rerun"><a href="">Please enter your details</a></div>
+<div class="rerun"><a >Please enter your details</a></div>
 <div class="container">
   <div class="card"></div>
   <div class="card">
@@ -38,7 +38,7 @@
       </div>
       <div class="input-container">
       <!--    <input type="password" id="Password" required="required"/> --> 
-         <form:input path="password" id="Username" required="required" /> 
+         <form:input type="password" path="password" id="Username" required="required" /> 
         <label for="Password">Password</label>
         <div class="bar"></div>
       </div>
