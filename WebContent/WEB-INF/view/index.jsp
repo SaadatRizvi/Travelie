@@ -69,24 +69,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 							   <!-- Spring tags added by Saadat -->
                
-							<form:select path="destination" items="${destinationList}" /><font
+							<form:select path="destination" items="${destinationList}" class="sel"/><font
 								style="color: #C11B17;"><form:errors path="destination"/></font>
 						
 				
 						</div>
 		                <div class="col-md-2 banner-grid">
-		               <form:input path="departureDate" type="date" />
+		               <form:input path="departureDate" type="date" class="sel"/>
 		               <!--  <input type="date" name="usr_date">   -->
 						</div>
 						<div class="col-md-2 banner-grid">
 						
-						 <form:input path="departureTime" type="time" />
+						 <form:input path="departureTime" type="time" class="sel" />
 					 <!--     <input type="time" name="usr_time" > -->
 						</div>
 						<div class="col-md-2 banner-grid">
 					 <!-- Spring tags added by Saadat -->
                
-							<form:select path="type" items="${vanTypeList}" /><font
+							<form:select path="type" items="${vanTypeList}" class="sel" /><font
 							style="color: #C11B17;"><form:errors path="type"/></font>
 																				
 							</div>
