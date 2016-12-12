@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.travelie.entity.Booking;
-import com.travelie.entity.Destination;
 import com.travelie.entity.Driver;
 import com.travelie.entity.Route;
 import com.travelie.entity.Van;
@@ -24,8 +23,6 @@ import com.travelie.service.VanService;
 @Controller
 @RequestMapping(value = "/booking")
 public class BookingController {
-	
-	boolean isUpdate = false;
 	
 	@Autowired
 	BookingService bookingService;
@@ -64,8 +61,6 @@ public String listBookings(Model model){
 @GetMapping("/showFormForAdd")
 public String showFormForAdd(Model theModel){
 	
-	isUpdate = false;
-	
 	Booking theBooking = new Booking();
 	
 	theModel.addAttribute("booking", theBooking);
@@ -78,8 +73,6 @@ public String showFormForAdd(Model theModel){
 public String saveBooking(@ModelAttribute("booking") Booking theBooking){
 	
 	boolean errors = false;
-	
-	List<Booking> bookings = bookingService.getBookings();
 			
 			
 			// Check for Van ID
@@ -200,8 +193,6 @@ public String saveBooking(@ModelAttribute("booking") Booking theBooking){
 
 @GetMapping("/showFormForUpdate")
 public String showFormForUpdate (@RequestParam("bookingId") int theId, Model theModel){
-	
-	isUpdate = true;
 	
 	Booking theBooking = bookingService.getBooking(theId);
 	
