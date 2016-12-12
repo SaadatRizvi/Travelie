@@ -1,8 +1,6 @@
 package com.travelie.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -48,7 +46,7 @@ import com.travelie.service.WebdataService;
 @Controller
 @RequestMapping(value = "/")
 @SessionAttributes(value = { "destinationList", "newWebdata",
-"customer","loginDetails","booking" })
+"customer","loginDetails","booking","latestTicketId" })
 public class HomepageController {
 	private static Logger logger = Logger
 			.getLogger(HomepageController.class);
@@ -256,7 +254,8 @@ public class HomepageController {
 	public String generateTicket(@ModelAttribute(value = "newWebdata") Webdata webdata,
 			@ModelAttribute(value = "booking") Booking booking,
 			@ModelAttribute(value = "loginDetails")LoginDetails loginDetails,
-			@ModelAttribute(value = "customer")Customer customer, Model model
+			@ModelAttribute(value = "customer")Customer customer, Model model,
+			@ModelAttribute(value = "latestTicketId") int latestTicketId
 			,SessionStatus sessionStatus){
 		
 		Ticket newTicket = new Ticket();
@@ -266,12 +265,51 @@ public class HomepageController {
 		newTicket.setSeatNumber(booking.getRegisteredSeats());
 		
 		logger.info("newTicket: "+newTicket);
+		ticketService.saveTicket(newTicket);
+		
+		/*
+		
+		logger.info("Gg1: ");
+		Set<Ticket> bT = booking.getTickets();
+		logger.info("Gg2: ");
+		Set<Ticket> cT = customer.getTickets();
+		logger.info("Gg2222222: ");
+		/*Ticket [] bookingTickets = bT.toArray(new Ticket[50]);
+		logger.info("Gg3: ");
+		Ticket [] customerTickets = cT.toArray(new Ticket[50]);
+		
+		
+		List<Ticket> bTT =  new ArrayList(bT);
+		logger.info("Gg3: ");
+		List<Ticket> cTT =  new ArrayList(cT);
+		logger.info("Gg4: ");
+		
+		List<Ticket> allTickets = new ArrayList<Ticket>();
+		logger.info("Gg5: ");
+		for (int i=0; i<bT.size();i++){
+			for(int j=0;j<cT.size();j++){
+				
+				if (customerTickets[j].getId() == bookingTickets[i].getId()){
+					logger.info("Gg555: ");
+					allTickets.add(customerTickets[j]);
+				}
+			}
+		}
+		logger.info("Gg6: ");
+	   for (Ticket temp: allTickets){
+			
+		//	logger.info("getTicketfromBooking: Ticket: "+ temp);
+			
+			
+		}
+		
+		*/
 		
 		TicketDetail ticketDetail = new TicketDetail();
+		int ii = latestTicketId +1;
 		
-		
-	  ticketDetail.setId(newTicket.getId());
-	  ticketDetail.setTicketId(newTicket.getId());
+	  ticketDetail.setId(ii);
+	  ticketDetail.setTicketId(ii);
 	  ticketDetail.setVanId(booking.getVan().getId());
 	  ticketDetail.setDriverId(booking.getDriver().getId());
 	  ticketDetail.setBookingId(newTicket.getBooking().getId());
@@ -287,15 +325,18 @@ public class HomepageController {
 		logger.info("webdata: "+webdata);
 		logger.info("booking: "+booking);
 		
-		model.addAttribute("ticketDetail", ticketDetail);
+		
+		
+		model.addAttribute("tempTicket", ticketDetail);
+		
+		
 		 
-		//bookingService.saveDestination(theDestination);
-		ticketService.saveTicket(newTicket);
+		
 		
 		sessionStatus.setComplete();
 		
 		
-		return null;
+		return "ticketDisplay";
 		
 	}
 	
@@ -449,6 +490,19 @@ public class HomepageController {
 		logger.info("getNewWebdata() method: Returning a new instance of Webdata");
 		return webdata;
 	}
+	
+	@ModelAttribute(value = "latestTicketId")
+	public int getlatestTicketId() {
+		
+		List<Ticket> tickets = ticketService.getTickets();
+		
+		int size = tickets.size();
+		
+		return tickets.get(size-1).getId();
+		
+	}
+	
+	
 	
 	
 	// used for getting booking information to select booking from the homepage
