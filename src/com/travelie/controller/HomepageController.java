@@ -180,6 +180,31 @@ public class HomepageController {
 		if (type.equals("Type") || time.equals("") || date.equals("")) return "redirect:/homepage";
 		if(destination.equals("Destination")) return "redirect:/homepage";
 		
+		
+		//edit by abbasi
+		
+		String tempYear = Character.toString(date.charAt(3));
+		logger.info("tempYear: " + tempYear); 
+		int tempMonth = Integer.parseInt(date.substring(5,7));
+		logger.info("tempMonth: " + tempMonth);
+		if (!(tempYear.equals("6")) && !(tempYear.equals("7")))		return "redirect:/homepage";
+		
+		if (tempYear.equals("6")){
+
+			if (tempMonth < 12 )
+				return "redirect:/homepage";
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		//////////edit end
+		
+		
 		newWebDataSubmit = true;
 		if (!loggedin){
 			model.addAttribute("customer", customer);

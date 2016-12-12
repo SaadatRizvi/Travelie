@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>List AdminLogins</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" />
 	
 
 

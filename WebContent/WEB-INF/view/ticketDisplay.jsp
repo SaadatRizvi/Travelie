@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 
   <title>Travelie Ticket</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" />
     <style>
 .cardWrap {
   width: 27em;
