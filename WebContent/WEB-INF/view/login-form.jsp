@@ -76,7 +76,7 @@
       </div>
         <div class="input-container">
         
-        <form:input path="password" id="Password" required="required"/>
+        <form:input  path="password" id="Password" required="required"/>
         <label for="Password">Password</label>
         <div class="bar"></div>
       </div>
