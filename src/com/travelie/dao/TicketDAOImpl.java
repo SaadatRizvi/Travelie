@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.travelie.controller.HomepageController;
 import com.travelie.entity.Customer;
 import com.travelie.entity.Ticket;
 
@@ -35,7 +34,7 @@ public class TicketDAOImpl implements TicketDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		Query<Ticket> theQuery =
-				currentSession.createQuery("from Ticket order by id", Ticket.class);
+				currentSession.createQuery("from Ticket order by bookings_id,seat_no", Ticket.class);
 		
 		List<Ticket> tickets = theQuery.getResultList();
 		
