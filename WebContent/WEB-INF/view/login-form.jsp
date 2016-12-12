@@ -54,7 +54,7 @@
     <h1 class="title">Register
       <div class="close"></div>
     </h1>
-    <form:form action="registerCustomer" modelAttribute="customer" method="POST">
+    <form:form action="registerNewCustomer" modelAttribute="customer" method="POST">
     
       <div class="input-container">  
       
