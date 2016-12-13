@@ -52,11 +52,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="${pageContext.request.contextPath}/resources//js/modernizr.custom.97074.js"></script>
 </head>
 <body>
-	<div class="banner-section">
+
+	
+		<!--  	<h3>	<img src="${pageContext.request.contextPath}/resources/images/tag-line.png" class="img-responsive" alt="tag-line"/> </h3>
+			-->
+			
+			
+			
+			
+			<div class="banner-section">
+			
+			<div class="container"> 
+				 <div class ="row">
+				 <div class="col-md-2 banner-grid"></div>
+				 <div class="col-md-1 banner-grid"></div>
+				 <h4>	<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-responsive" alt="logo"/> </h4>
+				 </div>
+				 
+				 <div class ="row">
+				  <div class="col-md-1 banner-grid"></div>
+				 
+				 <h3>	<img src="${pageContext.request.contextPath}/resources/images/tag-line.png" class="img-responsive" alt="tag-line"/> </h3>
+				 </div>
+			
+			
+			
+			
+			</div>
+			
+			
+			
+			
 		<div class="container">
 			<div class="banner-heder">
-				<h3>Let Us Plan Your Trip!<span>Best Available Choice in Topi</span></h3>
+			
+				
 			</div>
+			
 			<div class="banner-grids">
                 <div class ="row">
                  <form:form commandName="newWebdata"
