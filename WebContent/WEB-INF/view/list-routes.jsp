@@ -5,7 +5,7 @@
 <title>List Routes</title>
 
 	
-
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" />
 
 <link type="text/css" rel="stylesheet"
  href="${pageContext.request.contextPath}/resources/css/style.css"/>

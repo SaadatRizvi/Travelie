@@ -4,7 +4,7 @@
 <head>
 <title>List Destinations</title>
 
-	
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" />
 
 
 <link type="text/css" rel="stylesheet"

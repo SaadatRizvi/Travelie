@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.travelie.dao.TicketDAO;
+import com.travelie.entity.Booking;
 import com.travelie.entity.Customer;
 import com.travelie.entity.Ticket;
 
@@ -63,5 +64,14 @@ public class TicketServiceImpl implements TicketService {
 		
 		
 	}
+
+
+
+	/*@Override
+	@Transactional
+	public List<Ticket> getTicketfromBooking(int bId, int cId) {
+		return ticketDAO.getTicketfromBooking(bId,cId);
+		
+	}*/
 
 }
