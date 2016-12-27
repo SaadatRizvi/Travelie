@@ -5,6 +5,8 @@
 <html>
 <head>
 <title>Travelie | Home</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" />
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
@@ -50,11 +52,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="${pageContext.request.contextPath}/resources//js/modernizr.custom.97074.js"></script>
 </head>
 <body>
-	<div class="banner-section">
+
+	
+		<!--  	<h3>	<img src="${pageContext.request.contextPath}/resources/images/tag-line.png" class="img-responsive" alt="tag-line"/> </h3>
+			-->
+			
+			
+			
+			
+			<div class="banner-section">
+			
+	
+			
+			
+			
 		<div class="container">
 			<div class="banner-heder">
-				<h3>Let Us Plan Your Trip!<span>Best Available Choice in Topi</span></h3>
+			
+					<div class="container"> 
+				
+				 <h4>	<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-responsive" alt="logo"/> </h4>
+								 
+				  <div class ="row">
+				  			 
+				  <h3>	<img src="${pageContext.request.contextPath}/resources/images/tag-line.png" class="img-responsive" alt="tag-line"/> </h3>
+				
+				    </div>
+				</div>
+					
+				
 			</div>
+			
 			<div class="banner-grids">
                 <div class ="row">
                  <form:form commandName="newWebdata"
@@ -67,24 +95,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 							   <!-- Spring tags added by Saadat -->
                
-							<form:select path="destination" items="${destinationList}" /><font
+							<form:select path="destination" items="${destinationList}" class="sel"/><font
 								style="color: #C11B17;"><form:errors path="destination"/></font>
 						
 				
 						</div>
 		                <div class="col-md-2 banner-grid">
-		               <form:input path="departureDate" type="date" />
+		               <form:input path="departureDate" type="date" class="sel"/>
 		               <!--  <input type="date" name="usr_date">   -->
 						</div>
 						<div class="col-md-2 banner-grid">
 						
-						 <form:input path="departureTime" type="time" />
+						 <form:input path="departureTime" type="time" class="sel" />
 					 <!--     <input type="time" name="usr_time" > -->
 						</div>
 						<div class="col-md-2 banner-grid">
 					 <!-- Spring tags added by Saadat -->
                
-							<form:select path="type" items="${vanTypeList}" /><font
+							<form:select path="type" items="${vanTypeList}" class="sel" /><font
 							style="color: #C11B17;"><form:errors path="type"/></font>
 																				
 							</div>
@@ -153,6 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!--			 <li><a data-hover="News" href="#news" class="scroll">News</a></li>
 							  <li><a  href="#guides" data-hover="Guides" class="scroll">Guides</a></li> -->
 							 <li><a data-hover="Contact" href="#contact" class="scroll">Contact</a></li>
+							 	<li><a href="${pageContext.request.contextPath}/epanel" target="_blank">EPanel</a></li>
 							 
 						  </ul>
 						</div><!-- /.navbar-collapse -->

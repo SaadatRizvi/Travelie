@@ -47,7 +47,7 @@ public class Customer {
 	
 	
 	//Ticket.java   reference
-		 @OneToMany(mappedBy="customer",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+		 @OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
 		 private Set<Ticket> tickets;
 	
 		 

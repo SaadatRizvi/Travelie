@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Travelie Login Form</title>
-  
+  <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
@@ -54,7 +54,7 @@
     <h1 class="title">Register
       <div class="close"></div>
     </h1>
-    <form:form action="registerCustomer" modelAttribute="customer" method="POST">
+    <form:form action="registerNewCustomer" modelAttribute="customer" method="POST">
     
       <div class="input-container">  
       
@@ -76,7 +76,7 @@
       </div>
         <div class="input-container">
         
-        <form:input path="password" id="Password" required="required"/>
+        <form:input  path="password" id="Password" required="required"/>
         <label for="Password">Password</label>
         <div class="bar"></div>
       </div>
