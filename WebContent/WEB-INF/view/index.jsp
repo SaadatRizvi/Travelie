@@ -62,30 +62,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<div class="banner-section">
 			
-			<div class="container"> 
-				 <div class ="row">
-				 <div class="col-md-2 banner-grid"></div>
-				 <div class="col-md-1 banner-grid"></div>
-				 <h4>	<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-responsive" alt="logo"/> </h4>
-				 </div>
-				 
-				 <div class ="row">
-				  <div class="col-md-1 banner-grid"></div>
-				 
-				 <h3>	<img src="${pageContext.request.contextPath}/resources/images/tag-line.png" class="img-responsive" alt="tag-line"/> </h3>
-				 </div>
-			
-			
-			
-			
-			</div>
-			
+	
 			
 			
 			
 		<div class="container">
 			<div class="banner-heder">
 			
+					<div class="container"> 
+				
+				 <h4>	<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-responsive" alt="logo"/> </h4>
+								 
+				  <div class ="row">
+				  			 
+				  <h3>	<img src="${pageContext.request.contextPath}/resources/images/tag-line.png" class="img-responsive" alt="tag-line"/> </h3>
+				
+				    </div>
+				</div>
+					
 				
 			</div>
 			
@@ -187,6 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!--			 <li><a data-hover="News" href="#news" class="scroll">News</a></li>
 							  <li><a  href="#guides" data-hover="Guides" class="scroll">Guides</a></li> -->
 							 <li><a data-hover="Contact" href="#contact" class="scroll">Contact</a></li>
+							 	<li><a href="${pageContext.request.contextPath}/epanel" target="_blank">EPanel</a></li>
 							 
 						  </ul>
 						</div><!-- /.navbar-collapse -->
